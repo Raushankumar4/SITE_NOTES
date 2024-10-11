@@ -13,13 +13,16 @@ app.use(
   })
 );
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static("uploads"));
+app.use("/uploads", express.static("uploads"));
 app.use(cookieParser());
 
 // auth routes
 import authRoutes from "./routes/authroutes.js";
 
 app.use("/api/v1/auth", authRoutes);
+// Notes Routes
+import noteRoutes from "./routes/notesRoutes.js";
+app.use("/api/v1/notes", noteRoutes);
 
 app.get("/", (req, res) => {
   res.send("Hello World!");

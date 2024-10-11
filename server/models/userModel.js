@@ -32,8 +32,11 @@ const userSchema = new mongoose.Schema(
       enum: ["student", "teacher"],
       default: "student",
     },
+    resetPasswordExpire: {
+      type: Date,
+    },
   },
   { timestamps: true }
 );
 
-export default mongoose.model("User", userSchema);
+export const User = mongoose.model("User", userSchema);

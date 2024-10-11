@@ -23,6 +23,9 @@ app.use("/api/v1/auth", authRoutes);
 // Notes Routes
 import noteRoutes from "./routes/notesRoutes.js";
 app.use("/api/v1/notes", noteRoutes);
+// user routes
+import userRoutes from "./routes/userRoutes.js";
+app.use("/api/v1/users", userRoutes);
 
 app.get("/", (req, res) => {
   res.send("Hello World!");

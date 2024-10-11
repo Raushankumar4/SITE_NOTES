@@ -89,3 +89,80 @@ export const getAllSessionalNotes = ErrorHandler(async (req, res) => {
   }
   return res.status(200).json({ message: "success", allSessionalNotes });
 });
+
+export const updateNotes = ErrorHandler(async (req, res) => {
+  const { id } = req.params;
+  const { title, description } = req.body;
+
+  if (!title || !description) {
+    return res.status(400).json({ message: "Missing required fields" });
+  }
+
+  const notes = await Note.findById(id);
+  if (!notes) {
+    return res.status(404).json({ message: "Not found" });
+  }
+
+  let localFilePath = req.file ? req.file.path : null;
+
+  const updatedNote = await Note.findByIdAndUpdate(
+    id,
+    {
+      title,
+      description,
+      notesPdf: localFilePath.replace("\\", "/"),
+    },
+    { new: true }
+  );
+
+  if (!updatedNote) {
+    return res.status(404).json({ message: "Not found" });
+  }
+  return res.status(200).json({ message: "Updated", updatedNote });
+});
+
+// delete Note
+export const deleteNote = ErrorHandler(async (req, res) => {
+  const { id } = req.params;
+  const deletedNote = await Note.findByIdAndDelete(id);
+  if (!deletedNote) {
+    return res.status(404).json({ message: "Not found" });
+  }
+  return res.status(200).json({ message: "Deleted" });
+});
+
+// update Sessional Paper
+
+export const updateSessionalPaper = ErrorHandler(async (req, res) => {
+  const { id } = req.params;
+  const { title, description } = req.body;
+  const sessionalPaper = await Sessional.findById(id);
+  if (!sessionalPaper) {
+    return res.status(404).json({ message: "Not found" });
+  }
+  let fileLocalPath = req.file ? req.file.path : null;
+  const updateSessional = await Sessional.findByIdAndUpdate(
+    id,
+    {
+      title,
+      description,
+      sessionalPdf: fileLocalPath.replace("\\", "/"),
+    },
+    { new: true }
+  );
+  if (!updateSessional) {
+    return res.status(402).json({ message: "Error While Updating" });
+  }
+  return res.status(200).json({ message: "updated", updateSessional });
+});
+
+// deleteSessional paper
+
+export const deleteSessionalPaper = ErrorHandler(async (req, res) => {
+  const { id } = req.params;
+  const deletedSessional = await Sessional.findByIdAndDelete(id);
+  if (!deletedSessional) {
+    return res.status(404).json({ message: "Not found" });
+  }
+  return res.status(200).json({ message: "Deleted" });
+});

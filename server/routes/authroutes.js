@@ -23,6 +23,6 @@ router.route("/logout").get(isAuthenticated, logOutUser);
 router.route("/change-password/:id").put(isAuthenticated, changePassword);
 
 // forgot password
-router.route("/forgotPassword").post(isAuthenticated, forgotPassword);
+router.route("/forgotPassword").post(forgotPassword);
 
 export default router;

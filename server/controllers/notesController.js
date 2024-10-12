@@ -4,7 +4,7 @@ import { Sessional } from "../models/sessionalModel.js";
 import { User } from "../models/userModel.js";
 
 export const createNote = ErrorHandler(async (req, res) => {
-  const { title, description } = req.body;
+  const { title, description, branch } = req.body;
   if (!title || !description || !req.file) {
     return res.status(400).json({ message: "Missing required fields" });
   }
@@ -16,6 +16,7 @@ export const createNote = ErrorHandler(async (req, res) => {
   const newNote = await Note.create({
     title,
     description,
+    branch,
     notesPdf: req.file.path.replace("\\", "/"),
     userId: req.user._id,
   });
@@ -35,7 +36,7 @@ export const createNote = ErrorHandler(async (req, res) => {
 
 export const createSemesterSessionalNotes = ErrorHandler(async (req, res) => {
   const { id } = req.params;
-  const { title, description } = req.body;
+  const { title, description, branch } = req.body;
 
   if (!title || !description || !req.file) {
     return res.status(400).json({ message: "Missing required fields" });
@@ -51,6 +52,7 @@ export const createSemesterSessionalNotes = ErrorHandler(async (req, res) => {
   const createSessional = await Sessional.create({
     title,
     description,
+    branch,
     sessionalPdf: req.file.path.replace("\\", "/"),
     user: req.user._id,
     note: semester._id,
@@ -90,9 +92,10 @@ export const getAllSessionalNotes = ErrorHandler(async (req, res) => {
   return res.status(200).json({ message: "success", allSessionalNotes });
 });
 
+// update Note
 export const updateNotes = ErrorHandler(async (req, res) => {
   const { id } = req.params;
-  const { title, description } = req.body;
+  const { title, description, branch } = req.body;
 
   if (!title || !description) {
     return res.status(400).json({ message: "Missing required fields" });
@@ -110,6 +113,7 @@ export const updateNotes = ErrorHandler(async (req, res) => {
     {
       title,
       description,
+      branch,
       notesPdf: localFilePath.replace("\\", "/"),
     },
     { new: true }
@@ -135,7 +139,7 @@ export const deleteNote = ErrorHandler(async (req, res) => {
 
 export const updateSessionalPaper = ErrorHandler(async (req, res) => {
   const { id } = req.params;
-  const { title, description } = req.body;
+  const { title, description, branch } = req.body;
   const sessionalPaper = await Sessional.findById(id);
   if (!sessionalPaper) {
     return res.status(404).json({ message: "Not found" });
@@ -146,6 +150,7 @@ export const updateSessionalPaper = ErrorHandler(async (req, res) => {
     {
       title,
       description,
+      branch,
       sessionalPdf: fileLocalPath.replace("\\", "/"),
     },
     { new: true }

@@ -5,6 +5,11 @@ const sessionalSchema = new Schema(
     title: { type: String, required: true },
     description: { type: String, required: true },
     sessionalPdf: { type: String, required: true },
+    branch: {
+      type: String,
+      required: true,
+      enum: ["CSE", "IT", "ECE", "MECH", "CHEM", "CIVIL", "EEE", "FT"],
+    },
     note: {
       type: Schema.Types.ObjectId,
       ref: "Note",

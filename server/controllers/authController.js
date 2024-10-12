@@ -151,3 +151,27 @@ export const forgotPassword = ErrorHandler(async (req, res) => {
     return res.status(500).json({ message: "Error sending email" });
   }
 });
+
+// reset password
+
+export const resetPassword = ErrorHandler(async (req, res) => {
+  const decodedData = jwt.verify(req.query.token, process.env.FORGOT_SECRET);
+  if (!decodedData) {
+    return res.status(400).json({ message: "Invalid token" });
+  }
+  const user = await User.findOne({ email: decodedData.email });
+  if (!user) {
+    return res.status(404).json({ message: "User not found" });
+  }
+  if (user.resetPasswordExpire < Date.now()) {
+    return res.status(400).json({ message: "Token expired" });
+  }
+  if (user.resetPasswordExpire === null) {
+    return res.status(400).json({ message: "Token expired" });
+  }
+  const hashedPassword = await bcrypt.hash(req.body.password, 10);
+  user.password = hashedPassword;
+  user.resetPasswordExpire = null;
+  await user.save();
+  return res.status(200).json({ message: "Password changed successfully" });
+});

@@ -13,7 +13,7 @@ import { sendForgotPasswordmail } from "../middleware/nodeMailer.js";
 dotenv.config();
 
 export const register = ErrorHandler(async (req, res) => {
-  const { name, email, password, role, selectBranch } = req.body;
+  const { fulName, email, password, role, selectBranch } = req.body;
 
   if (password.length < 6) {
     return res
@@ -28,7 +28,7 @@ export const register = ErrorHandler(async (req, res) => {
 
   const hashedPassword = await bcrypt.hash(password, 10);
   const newUser = await User.create({
-    name,
+    fulName,
     email,
     password: hashedPassword,
     role,

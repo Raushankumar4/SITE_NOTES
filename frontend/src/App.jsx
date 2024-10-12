@@ -4,7 +4,7 @@ import { Outlet } from "react-router-dom";
 
 const App = () => {
   return (
-    <div>
+    <div className="App">
       <Navbar />
       <main className="">
         <Outlet />

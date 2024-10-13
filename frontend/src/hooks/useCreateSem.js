@@ -10,6 +10,7 @@ export const useCreateSem = () => {
     description: "",
     notesPdf: null,
     branch: "",
+    selectYear: "",
   });
   const [filePreview, setFilePreview] = useState(null);
   const [loadings, setLoadings] = useState(false);
@@ -36,12 +37,14 @@ export const useCreateSem = () => {
   };
 
   const validate = () => {
-    const { title, description, notesPdf, branch } = createSem;
+    const { title, description, notesPdf, branch, selectYear } = createSem;
     const newErrors = {};
     if (!title) newErrors.title = "title is required";
     if (!description) newErrors.description = "description is required";
     if (!notesPdf) newErrors.notesPdf = "notesPdf is required";
     if (!branch) newErrors.branch = "branch is required";
+    if (!selectYear) newErrors.selectYear = "selectYear is required";
+
     setError(newErrors);
     return Object.keys(newErrors).length === 0 ? null : newErrors;
   };
@@ -56,6 +59,7 @@ export const useCreateSem = () => {
     formData.append("title", createSem.title);
     formData.append("description", createSem.description);
     formData.append("branch", createSem.branch);
+    formData.append("selectYear", createSem.selectYear);
     try {
       const { data } = await axios.post(`${NOTES}/createNote`, formData, {
         headers: {

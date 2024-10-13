@@ -12,9 +12,27 @@ const CreateSem = () => {
     { value: "CIVIL", label: "CIVIL" },
     { value: "IT", label: "IT" },
     { value: "EIE", label: "EIE" },
-    { value: "CHEMICAL", label: "Chemical" },
-    { value: "BIOTECH", label: "Biotech" },
-    { value: "OTHERS", label: "Others" },
+    { value: "CHEMICAL", label: "CHEMICAL" },
+    { value: "BIOTECH", label: "BIOTECH" },
+    { value: "OTHERS", label: "OTHERS" },
+  ];
+  const yearOptions = [
+    {
+      value: "I",
+      label: "I",
+    },
+    {
+      value: "II",
+      label: "II",
+    },
+    {
+      value: "III",
+      label: "III",
+    },
+    {
+      value: "IV",
+      label: "IV",
+    },
   ];
 
   const {
@@ -58,6 +76,15 @@ const CreateSem = () => {
           onChange={handleOnChange}
           value={createSem.branch}
           error={error.branch}
+        />
+
+        <SelectOption
+          options={yearOptions}
+          name="selectYear"
+          label="Select Year"
+          onChange={handleOnChange}
+          value={createSem.selectYear}
+          error={error.selectYear}
         />
 
         {!filePreview && (

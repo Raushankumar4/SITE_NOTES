@@ -8,23 +8,23 @@ const Profile = () => {
   return (
     <div className="max-w-md md:mt-[10vw] mt-[20vw] mx-auto bg-white shadow-md rounded-lg overflow-hidden">
       <div className="px-6 py-4">
-        <h2 className="text-2xl font-bold mb-2 capitalize">{user.name}</h2>
+        <h2 className="text-2xl font-bold mb-2 capitalize">{user?.name}</h2>
         <p className="text-gray-700 text-base mb-1">
-          <span className="font-semibold">Email:</span> {user.email}
+          <span className="font-semibold">Email:</span> {user?.email}
         </p>
         <p className="text-gray-700 text-base mb-1">
-          <span className="font-semibold">Branch:</span> {user.selectBranch}
+          <span className="font-semibold">Branch:</span> {user?.selectBranch}
         </p>
         <p className="text-gray-700 text-base mb-1">
-          <span className="font-semibold">Role:</span> {user.role}
+          <span className="font-semibold">Role:</span> {user?.role}
         </p>
         <p className="text-gray-700 text-base mb-1">
           <span className="font-semibold">Created At:</span>{" "}
-          {new Date(user.createdAt).toLocaleDateString()}
+          {new Date(user?.createdAt).toLocaleDateString()}
         </p>
         <p className="text-gray-700 text-base mb-1">
           <span className="font-semibold">Updated At:</span>{" "}
-          {new Date(user.updatedAt).toLocaleDateString()}
+          {new Date(user?.updatedAt).toLocaleDateString()}
         </p>
       </div>
     </div>

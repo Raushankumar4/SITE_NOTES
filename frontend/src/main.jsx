@@ -14,6 +14,8 @@ import SignIn from "./components/Auth/SignIn.jsx";
 import ForgotPassword from "./components/Auth/ForgotPassword.jsx";
 import ResetPassword from "./components/Auth/ResetPassword.jsx";
 import CreateSem from "./components/Teacher/CreateSemester/CreateSem.jsx";
+import Profile from "./components/Profile/Profile.jsx";
+import SemesterPapers from "./components/AllNotes/SemesterPapers.jsx";
 
 const router = createBrowserRouter([
   {
@@ -26,7 +28,9 @@ const router = createBrowserRouter([
       { path: "teacherLogin", element: <SignIn /> },
       { path: "forgotPassword", element: <ForgotPassword /> },
       { path: "reset-password/:token", element: <ResetPassword /> },
-      { path: "/create", element: <CreateSem /> },
+      { path: "profile", element: <Profile /> },
+      { path: "create", element: <CreateSem /> },
+      { path: "semesterPaper", element: <SemesterPapers /> },
     ],
   },
 ]);

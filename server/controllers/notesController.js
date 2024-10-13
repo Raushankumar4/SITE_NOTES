@@ -5,9 +5,6 @@ import { User } from "../models/userModel.js";
 
 export const createNote = ErrorHandler(async (req, res) => {
   const { title, description, branch, selectYear } = req.body;
-  if (!title || !description || !req.file || !branch || !selectYear) {
-    return res.status(400).json({ message: "Missing required fields" });
-  }
   const user = await User.findById(req.user._id);
   if (user.role !== "teacher") {
     return res.status(403).json({ message: "Only teachers can create notes" });
@@ -17,9 +14,9 @@ export const createNote = ErrorHandler(async (req, res) => {
     title,
     description,
     branch,
+    selectYear,
     notesPdf: req.file.path.replace("\\", "/"),
     userId: req.user._id,
-    selectYear,
   });
   newNote.sessionalPaper.push(newNote._id);
   await newNote.save();

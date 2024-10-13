@@ -8,7 +8,19 @@ const notesSchema = new Schema(
     branch: {
       type: String,
       required: true,
-      enum: ["CSE", "IT", "ECE", "MECH", "CHEM", "CIVIL", "EEE", "FT"],
+      enum: [
+        "CSE",
+        "IT",
+        "ECE",
+        "MECH",
+        "CHEM",
+        "CIVIL",
+        "EEE",
+        "FT",
+        "EIE",
+        "BIOTECH",
+        "OTHERS",
+      ],
     },
     selectYear: {
       type: String,

@@ -10,6 +10,11 @@ const notesSchema = new Schema(
       required: true,
       enum: ["CSE", "IT", "ECE", "MECH", "CHEM", "CIVIL", "EEE", "FT"],
     },
+    selectYear: {
+      type: String,
+      required: true,
+      enum: ["I", "II", "III", "IV"],
+    },
     userId: {
       type: Schema.Types.ObjectId,
       ref: "User",

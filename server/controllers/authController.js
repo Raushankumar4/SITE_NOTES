@@ -13,12 +13,18 @@ import { sendForgotPasswordmail } from "../middleware/nodeMailer.js";
 dotenv.config();
 
 export const register = ErrorHandler(async (req, res) => {
-  const { fulName, email, password, role, selectBranch } = req.body;
+  const { fullName, email, password, role, selectBranch, phoneNumber } =
+    req.body;
 
   if (password.length < 6) {
     return res
       .status(400)
       .json({ message: "Password must be at least 6 characters long" });
+  }
+  if (phoneNumber.length < 10) {
+    return res
+      .status(400)
+      .json({ message: "Phone number must be at least 10 characters long" });
   }
 
   const user = await User.findOne({ email });
@@ -28,11 +34,12 @@ export const register = ErrorHandler(async (req, res) => {
 
   const hashedPassword = await bcrypt.hash(password, 10);
   const newUser = await User.create({
-    fulName,
+    fullName,
     email,
     password: hashedPassword,
     role,
     selectBranch,
+    phoneNumber,
   });
   if (!newUser) {
     return res.status(500).json({ message: "Error creating user" });

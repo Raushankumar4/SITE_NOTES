@@ -12,14 +12,14 @@ export const getProfile = ErrorHandler(async (req, res) => {
 // update profile
 
 export const updateProfile = ErrorHandler(async (req, res) => {
-  const { name, email, selectBranch } = req.body;
-  if (!name || !email || !selectBranch) {
+  const { fullName, email, phoneNumber } = req.body;
+  if (!fullName || !email || !selectBranch) {
     return res.status(400).json({ message: "Missing required fields" });
   }
   const user = await User.findByIdAndUpdate(req.user._id, {
-    name,
+    fullName,
     email,
-    selectBranch,
+    phoneNumber,
   })
     .select("-password")
     .exec();

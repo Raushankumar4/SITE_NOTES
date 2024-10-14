@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema(
   {
-    fulName: {
+    fullName: {
       type: String,
       required: [true, "Please provide a name"],
       minlength: 3,
@@ -21,6 +21,14 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: [true, "Please provide a password"],
       minlength: 6,
+    },
+    phoneNumber: {
+      type: Number,
+      required: [true, "Please provide a phone number"],
+      minlength: [10, "Please provide a valid phone number"],
+      maxlength: [10, "Please provide a valid phone number"],
+      unique: true,
+      trim: true,
     },
     selectBranch: {
       type: String,

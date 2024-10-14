@@ -16,6 +16,7 @@ import ResetPassword from "./components/Auth/ResetPassword.jsx";
 import CreateSem from "./components/Teacher/CreateSemester/CreateSem.jsx";
 import Profile from "./components/Profile/Profile.jsx";
 import SemesterPapers from "./components/AllNotes/SemesterPapers.jsx";
+import UpdateNotes from "./components/Teacher/CreateSemester/UpdateNotes.jsx";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,7 @@ const router = createBrowserRouter([
       { path: "profile", element: <Profile /> },
       { path: "create", element: <CreateSem /> },
       { path: "semesterPaper", element: <SemesterPapers /> },
+      { path: "updatePaper/:id", element: <UpdateNotes /> },
     ],
   },
 ]);

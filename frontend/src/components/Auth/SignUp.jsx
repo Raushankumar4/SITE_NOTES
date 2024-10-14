@@ -33,13 +33,13 @@ const SignUp = () => {
         <h2 className="text-2xl font-bold mb-6 text-center">Sign Up</h2>
         <form onSubmit={handleOnRegister}>
           <InputArea
-            name="fulName"
+            name="fullName"
             type="text"
             label="Full Name"
             placeholder="Enter your name"
-            value={userInput.fulName}
+            value={userInput.fullName}
             onChange={handleOnChange}
-            error={error?.fulName}
+            error={error?.fullName}
           />
           <InputArea
             name="email"
@@ -67,6 +67,15 @@ const SignUp = () => {
           >
             {showPassword ? "Hide" : "Show"}
           </button>
+          <InputArea
+            name="phoneNumber"
+            type="number"
+            label="Phone Number"
+            placeholder="Enter your phone number"
+            value={userInput.phoneNumber}
+            onChange={handleOnChange}
+            error={error?.phoneNumber}
+          />
           <SelectOption
             id="role"
             name="role"

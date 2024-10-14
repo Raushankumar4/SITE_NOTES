@@ -17,7 +17,13 @@ const userSlce = createSlice({
     setSemesterPaper: (state, action) => {
       state.semesterPapers = action.payload;
     },
+    deleteSemesterPaper: (state, action) => {
+      state.semesterPapers = state.semesterPapers?.filter(
+        (paper) => paper?._id !== action.payload
+      );
+    },
   },
 });
-export const { setUser, setRefresh, setSemesterPaper } = userSlce.actions;
+export const { setUser, setRefresh, setSemesterPaper, deleteSemesterPaper } =
+  userSlce.actions;
 export default userSlce.reducer;

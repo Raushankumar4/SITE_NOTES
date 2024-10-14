@@ -6,11 +6,12 @@ import { useNavigate } from "react-router-dom";
 
 export const useRegisterUser = () => {
   const [userInput, setUserInput] = useState({
-    fulName: "",
+    fullName: "",
     email: "",
     password: "",
     role: "",
     selectBranch: "",
+    phoneNumber: "",
   });
 
   const [error, setError] = useState({});
@@ -27,11 +28,17 @@ export const useRegisterUser = () => {
 
   const validateForm = () => {
     const newErrors = {};
-    if (!userInput.fulName) newErrors.fulName = "required";
+    if (!userInput.fullName) newErrors.fulName = "required";
     if (!userInput.email) newErrors.email = "required";
     if (!userInput.password) newErrors.password = "required";
     if (!userInput.role) newErrors.role = "required";
     if (!userInput.selectBranch) newErrors.selectBranch = "required";
+    if (!userInput.phoneNumber) {
+      newErrors.phoneNumber = "required";
+    } else if (!/^\d+$/.test(userInput.phoneNumber)) {
+      newErrors.phoneNumber = "invalid phone number";
+    }
+
     setError(newErrors);
     return Object.keys(newErrors).length === 0 ? null : newErrors;
   };

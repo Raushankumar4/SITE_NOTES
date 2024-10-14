@@ -1,6 +1,7 @@
 import React from "react";
 import { useGetProfile } from "../../hooks/useGetProfile";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const Profile = () => {
   useGetProfile();
@@ -8,7 +9,14 @@ const Profile = () => {
   return (
     <div className="max-w-md md:mt-[10vw] mt-[20vw] mx-auto bg-white shadow-md rounded-lg overflow-hidden">
       <div className="px-6 py-4">
-        <h2 className="text-2xl font-bold mb-2 capitalize">{user?.name}</h2>
+        <div className="flex items-center justify-between">
+          <h2 className="text-2xl font-bold mb-2 capitalize">
+            {user?.fullName}
+          </h2>
+          <Link to="update" className="text-blue-500 no-underline">
+            Edit
+          </Link>
+        </div>
         <p className="text-gray-700 text-base mb-1">
           <span className="font-semibold">Email:</span> {user?.email}
         </p>

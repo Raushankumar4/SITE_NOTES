@@ -1,109 +1,46 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { logOutUser } from "../Auth/logOut";
+import React from "react";
+import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
+import { FaHome, FaUser, FaCog, FaEnvelope } from "react-icons/fa";
+
+const navItems = [
+  { name: "Home", icon: <FaHome />, path: "/" },
+  { name: "Profile", icon: <FaUser />, path: "/profile" },
+  { name: "Settings", icon: <FaCog />, path: "/settings" },
+  { name: "Messages", icon: <FaEnvelope />, path: "/messages" },
+];
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const { isAuthenticated, token } = useSelector((state) => state.auth);
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
-
-  const handleLogOut = () => {
-    logOutUser(dispatch, navigate, token);
-  };
-
   return (
-    <nav className="bg-gray-700 text-black flex justify-between items-center p-4 fixed top-0 left-0 w-full z-50 shadow-md">
-      <div className="text-2xl font-bold">Share Notes</div>
-      {/* Desktop Links */}
-      <div className="hidden md:flex gap-8 text-lg px-10">
-        <Link
-          className="transition duration-200 hover:text-gray-300 no-underline"
-          to="/"
-        >
-          Home
-        </Link>
-        {!isAuthenticated ? (
-          <>
-            <Link
-              className="transition duration-200 hover:text-gray-300 no-underline"
-              to="/signUp"
-            >
-              Sign Up
-            </Link>
-            <Link
-              className="transition duration-200 hover:text-gray-300 no-underline"
-              to="/signIn"
-            >
-              Sign In
-            </Link>
-          </>
-        ) : (
-          <button
-            onClick={() => {
-              handleLogOut();
-              toggleMenu();
-            }}
-            className="transition duration-200 hover:text-gray-300 no-underline"
-          >
-            Log Out
-          </button>
-        )}
-      </div>
-
-      {/* Hamburger Menu for mobile */}
-      <div className="md:hidden">
-        <button onClick={toggleMenu} className="focus:outline-none text-2xl">
-          &#9776;
-        </button>
-      </div>
-
-      {/* Mobile Menu */}
-      {isOpen && (
-        <div className="absolute top-16 left-0 w-full bg-gray-700 text-white py-4 flex flex-col items-center md:hidden">
+    <div className="fixed bottom-0 flex justify-center items-centern left-0 right-0   p-4 z-50 md:p-2">
+      <div className="flex bg-[#FFFFFF] space-x-8 bg-gray-[#f5f5f5] drop-shadow-lg shadow-xl p-4 rounded-full">
+        {navItems.map((item, index) => (
           <Link
-            className="py-2 transition duration-200 hover:text-gray-300 no-underline"
-            to="/"
-            onClick={toggleMenu}
+            to={item.path}
+            key={index}
+            className="relative flex flex-col items-center text-[#FFFFFFs]"
           >
-            Home
-          </Link>
-          {!isAuthenticated ? (
-            <>
-              <Link
-                className="py-2 transition duration-200 hover:text-gray-300 no-underline"
-                to="/signUp"
-                onClick={toggleMenu}
-              >
-                Sign Up
-              </Link>
-              <Link
-                className="py-2 transition duration-200 hover:text-gray-300 no-underline"
-                to="/signIn"
-                onClick={toggleMenu}
-              >
-                Sign In
-              </Link>
-            </>
-          ) : (
-            <button
-              className="py-2 transition duration-200 hover:text-gray-300 no-underline"
-              onClick={() => {
-                handleLogOut();
-                toggleMenu();
-              }}
+            <motion.div
+              className="cursor-pointer"
+              initial={{ opacity: 0.9, scale: 1 }}
+              whileHover={{ opacity: 0.8, scale: 1.2 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
             >
-              Log Out
-            </button>
-          )}
-        </div>
-      )}
-    </nav>
+              <div className="text-xl text-[#08090A] md:text-2xl">
+                {item?.icon}
+              </div>
+              <motion.span
+                className="absolute bottom-4 bg-[#08090A] text-white text-sm p-1 rounded transition-opacity duration-200"
+                initial={{ opacity: 0 }}
+                whileHover={{ opacity: 1 }}
+              >
+                {item?.name}
+              </motion.span>
+            </motion.div>
+          </Link>
+        ))}
+      </div>
+    </div>
   );
 };
 

@@ -4,9 +4,9 @@ import { Outlet } from "react-router-dom";
 
 const App = () => {
   return (
-    <div className="bg-gray-100 min-h-screen">
+    <div className="bg-[#FFFFFF]">
       <Navbar />
-      <main className="p-10">
+      <main>
         <Outlet />
       </main>
     </div>

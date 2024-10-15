@@ -16,14 +16,15 @@ const Navbar = () => {
     { name: "Settings", icon: <FaCog />, path: "/settings" },
     { name: "Messages", icon: <FaEnvelope />, path: "/messages" },
   ];
+
   return (
-    <div className="fixed bottom-0 flex justify-center items-centern left-0 right-0   p-4 z-50 md:p-2">
-      <div className="flex bg-[#FFFFFF] space-x-8 bg-gray-[#f5f5f5] drop-shadow-lg shadow-xl p-4 rounded-full">
+    <div className="fixed bottom-0 flex justify-center p-4 z-50 bg-gray-400 w-full">
+      <div className="flex bg-[#fff] space-x-8 drop-shadow-lg shadow-xl p-4 rounded-full w-3/4 md:w-fit max-w-[600px]">
         {navItems.map((item, index) => (
           <Link
             to={item.path}
             key={index}
-            className="relative flex flex-col items-center text-[#FFFFFFs]"
+            className="relative flex flex-col items-center text-[#FFFFFF]"
           >
             <motion.div
               className="cursor-pointer"

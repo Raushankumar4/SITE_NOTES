@@ -24,6 +24,7 @@ const SemesterPapers = () => {
   return (
     <div className="p-6 mt-[4vw]">
       <h1 className="text-2xl font-bold text-center mb-6">Semester Papers</h1>
+
       <div className="space-y-6">
         {semesterPapers?.map((paper) => (
           <div
@@ -54,6 +55,7 @@ const SemesterPapers = () => {
                 Download PDF
               </a>
             </div>
+            <Link to={`createSessional/${paper?._id}`}>Add New Paper</Link>
           </div>
         ))}
       </div>

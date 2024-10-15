@@ -2,15 +2,20 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { FaHome, FaUser, FaCog, FaEnvelope } from "react-icons/fa";
-
-const navItems = [
-  { name: "Home", icon: <FaHome />, path: "/" },
-  { name: "Profile", icon: <FaUser />, path: "/profile" },
-  { name: "Settings", icon: <FaCog />, path: "/settings" },
-  { name: "Messages", icon: <FaEnvelope />, path: "/messages" },
-];
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
+  const isAuth = useSelector((state) => state.auth.isAuthenticated);
+  const navItems = [
+    { name: "Home", icon: <FaHome />, path: "/" },
+    {
+      name: "Profile",
+      icon: <FaUser />,
+      path: isAuth ? "/profile" : "/signIn",
+    },
+    { name: "Settings", icon: <FaCog />, path: "/settings" },
+    { name: "Messages", icon: <FaEnvelope />, path: "/messages" },
+  ];
   return (
     <div className="fixed bottom-0 flex justify-center items-centern left-0 right-0   p-4 z-50 md:p-2">
       <div className="flex bg-[#FFFFFF] space-x-8 bg-gray-[#f5f5f5] drop-shadow-lg shadow-xl p-4 rounded-full">

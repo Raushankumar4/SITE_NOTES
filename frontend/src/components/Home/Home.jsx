@@ -1,12 +1,14 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
-    <div className="flex justify-center items-center max-auto box-border md:h-[81vh] h-[86vh]">
-      <div className="bg-[#EFEFEF] dark:text-[#FFFFFF] dark:bg-[#363636] w-[80%] h-full grid grid-cols-1 md:grid-cols-2 items-center shadow-lg rounded-md p-10">
-        <div className="flex flex-col items-center leading-[-10vw]">
+    <div className="flex justify-center items-center max-auto box-border md:h-[87.8vh] h-[90vh]">
+      <div className="bg-[#EFEFEF] dark:text-[#FFFFFF] dark:bg-[rgb(54,54,54)] w-[80%] h-[92%] grid grid-cols-1 md:grid-cols-2 items-center  shadow-lg rounded-md p-10 mb-2">
+        <div className="flex flex-col items-center ">
           <img
-            src="https://png.pngtree.com/png-vector/20230902/ourmid/pngtree-teenage-doing-discussion-using-laptop-3d-character-illustration-png-image_9238704.png"
+            // src="https://png.pngtree.com/png-vector/20230902/ourmid/pngtree-teenage-doing-discussion-using-laptop-3d-character-illustration-png-image_9238704.png"
+            src="Logo.png"
             alt="Illustration"
             className="object-cover w-20 mb-4"
           />
@@ -22,9 +24,12 @@ const Home = () => {
             collaboration, helping you stay organized.
           </p>
 
-          <button className="bg-[#FFFFFF] dark:bg-[#0F3BFE] text-[#fffff] px-4 py-2 rounded-xl ">
-            View{" "}
-          </button>
+          <Link
+            to="/semesterPaper"
+            className="bg-[#FFFFFF] dark:text-[#ffff] dark:bg-[#0F3BFE] text-[#fffff] px-4 py-2 rounded-xl no-underline"
+          >
+            Get Started
+          </Link>
         </div>
         <div className="flex justify-center items-center">
           <img

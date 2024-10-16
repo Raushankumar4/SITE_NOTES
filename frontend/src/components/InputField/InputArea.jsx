@@ -15,11 +15,8 @@ export const InputArea = ({
   placeholder,
 }) => {
   return (
-    <div className="mx-auto w-full max-w-md">
-      <label
-        className={`text-gray-700 font-medium block mb-2 ${className || ""}`}
-        htmlFor={id}
-      >
+    <div className="w-full ">
+      <label className={`text-gray-700 font-medium block mb-2 `} htmlFor={id}>
         {label}
       </label>
 
@@ -33,7 +30,7 @@ export const InputArea = ({
         disabled={disabled}
         placeholder={placeholder}
         autoComplete={autoComplete}
-        className={`inline-block border  rounded-lg w-full p-2 leading-tight transition duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+        className={`inline-block border  rounded-lg w-full p-2 leading-tight transition duration-200  focus:outline-none focus:ring-2 focus:ring-blue-500 ${
           error
             ? "bg-red-600 border-2 ring-red-500 ring-1 outline-none"
             : "border-gray-300 focus:border-gray-500"

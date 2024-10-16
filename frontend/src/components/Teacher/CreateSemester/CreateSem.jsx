@@ -44,89 +44,105 @@ const CreateSem = () => {
     loadings,
     error,
   } = useCreateSem();
-
   return (
-    <div className="max-w-lg mx-auto p-6 bg-white rounded-lg shadow-lg">
-      <h1 className="text-3xl font-bold mb-6 text-center">Create Seminar</h1>
-      <form onSubmit={handleOnCreate}>
-        <h2 className="text-lg font-semibold mb-4">
-          Seminar Notes (only pdf and image)
-        </h2>
-
-        <InputArea
-          label="Semester Name"
-          value={createSem.title}
-          onChange={handleOnChange}
-          name="title"
-          error={error.title}
-        />
-
-        <InputArea
-          label="Seminar Description"
-          value={createSem.description}
-          onChange={handleOnChange}
-          name="description"
-          error={error.description}
-        />
-
-        <SelectOption
-          options={options}
-          name="branch"
-          label="Branch"
-          onChange={handleOnChange}
-          value={createSem.branch}
-          error={error.branch}
-        />
-
-        <SelectOption
-          options={yearOptions}
-          name="selectYear"
-          label="Select Year"
-          onChange={handleOnChange}
-          value={createSem.selectYear}
-          error={error.selectYear}
-        />
-
-        {!filePreview && (
-          <InputArea
-            type="file"
-            name="notesPdf"
-            accept="application/pdf,image/*"
-            label="Seminar Notes"
-            onChange={handleOnChange}
-            error={error.notesPdf}
-            className="mt-4 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 placeholder:text-gray-400 placeholder-shown:text-gray-800"
+    <div className="h-screen flex justify-center items-center p-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-5xl bg-gray-100 shadow-lg rounded-lg p-6">
+        <div className="flex justify-center items-center">
+          <img
+            className="w-full h-auto object-cover rounded-lg"
+            src="https://r2.erweima.ai/imgcompressed/img/compressed_b81b5e12da85f091f83a70bdf15cf51c.webp"
           />
-        )}
+        </div>
+        <div>
+          <h1 className="text-2xl font-bold text-center mb-4">
+            Add Semester Note
+          </h1>
+          <form onSubmit={handleOnCreate} className="space-y-4">
+            <div>
+              <InputArea
+                label="Semester Name"
+                value={createSem.title}
+                onChange={handleOnChange}
+                name="title"
+                error={error.title}
+              />
+            </div>
 
-        {filePreview && (
-          <div className="mb-4">
-            <iframe
-              className="w-full h-64 md:h-80 border"
-              src={filePreview}
-              title="File preview"
-            ></iframe>
-          </div>
-        )}
+            <div>
+              <InputArea
+                label="Aboout Semester"
+                value={createSem.description}
+                onChange={handleOnChange}
+                name="description"
+                error={error.description}
+              />
+            </div>
 
-        {filePreview && (
-          <button
-            type="button"
-            disabled={loadings}
-            className="mb-4 bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600"
-            onClick={() => setFilePreview(null)}
-          >
-            Remove
-          </button>
-        )}
+            <div>
+              <SelectOption
+                options={options}
+                name="branch"
+                label="Branch"
+                onChange={handleOnChange}
+                value={createSem.branch}
+                error={error.branch}
+              />
+            </div>
 
-        <button
-          type="submit"
-          className="w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50"
-        >
-          Create
-        </button>
-      </form>
+            <div>
+              <SelectOption
+                options={yearOptions}
+                name="selectYear"
+                label="Select Year"
+                onChange={handleOnChange}
+                value={createSem.selectYear}
+                error={error.selectYear}
+              />
+            </div>
+
+            <div>
+              {!filePreview && (
+                <InputArea
+                  type="file"
+                  name="notesPdf"
+                  accept="application/pdf,image/*"
+                  label="Seminar Notes"
+                  onChange={handleOnChange}
+                  error={error.notesPdf}
+                />
+              )}
+
+              {filePreview && (
+                <div className="mb-4">
+                  <iframe
+                    className="w-full h-64 md:h-80 border"
+                    src={filePreview}
+                    title="File preview"
+                  ></iframe>
+                </div>
+              )}
+
+              {filePreview && (
+                <button
+                  type="button"
+                  disabled={loadings}
+                  className="mb-4 bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600"
+                  onClick={() => setFilePreview(null)}
+                >
+                  Remove
+                </button>
+              )}
+            </div>
+
+            <button
+              type="submit"
+              className="w-full bg-[#000000] text-white py-2 rounded  focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50"
+            >
+              Create
+            </button>
+          </form>
+        </div>
+      </div>
     </div>
   );
 };

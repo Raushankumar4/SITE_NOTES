@@ -1,30 +1,33 @@
-import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import { useSelector } from "react-redux";
-import { NOTES } from "../constant";
+import { NOTES, SERVER } from "../constant";
+import { toast } from "react-hot-toast";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { SERVER } from "../constant";
+import { setRefresh } from "../Redux/store/slice/userSlice";
 
-export const useUpdateSemesterPaper = (semeseterId) => {
-  const [loading, setLoading] = useState(false);
+export const useUpdateSessional = (sessionalId) => {
   const token = useSelector((state) => state.auth.token);
-  const { semesterPapers } = useSelector((state) => state.user);
-  const paper = semesterPapers.find((paper) => paper?._id === semeseterId);
-  const navigate = useNavigate();
-  const [filePreview, setFilePreview] = useState(
-    `${SERVER}/${paper?.notesPdf}` || null
-  );
+  const dispatch = useDispatch();
+  const navigate = useNavigate(); // Initialize navigate
+  const [loading, setLoading] = useState(false);
+  const { sessionalPapers } = useSelector((state) => state.user);
+  const paper = sessionalPapers.find((paper) => paper?._id === sessionalId);
+
   const [userInput, setUserInput] = useState({
     title: paper?.title || "",
     description: paper?.description || "",
     branch: paper?.branch || "",
     selectYear: paper?.selectYear || "",
-    notesPdf: null,
+    sessionalPdf: null,
   });
+  const [filePreview, setFilePreview] = useState(
+    `${SERVER}/${paper?.sessionalPdf}` || null
+  );
 
   const handleOnChange = (e) => {
     const { name, value, files } = e.target;
-    if (name === "notesPdf") {
+    if (name === "sessionalPdf") {
       const file = files[0];
       setUserInput((prev) => ({
         ...prev,
@@ -40,42 +43,48 @@ export const useUpdateSemesterPaper = (semeseterId) => {
     }
   };
 
-  const handleOnUpdate = async (e) => {
+  const handleSubmit = async (e) => {
     if (!token) return;
     e.preventDefault();
     const formData = new FormData();
-    if (userInput.notesPdf) formData.append("notesPdf", userInput.notesPdf);
     formData.append("title", userInput.title);
     formData.append("description", userInput.description);
     formData.append("branch", userInput.branch);
     formData.append("selectYear", userInput.selectYear);
+
+    if (userInput.sessionalPdf) {
+      formData.append("sessionalPdf", userInput.sessionalPdf);
+    }
     setLoading(true);
     try {
-      const { data } = await axios.put(
-        `${NOTES}/updateNote/${semeseterId}`,
+      const response = await axios.put(
+        `${NOTES}/updateSessional/${sessionalId}`,
         formData,
         {
           headers: {
             Authorization: `Bearer ${token}`,
             "Content-Type": "multipart/form-data",
           },
+          withCredentials: true,
         }
       );
-      console.log(data);
+      dispatch(setRefresh(true));
+      toast.success(response?.data?.message);
       navigate(-1);
     } catch (error) {
-      console.log(error);
+      toast.error(error?.response?.data?.message || error?.message);
+      console.error(error);
     } finally {
       setLoading(false);
     }
   };
 
   return {
-    setFilePreview,
-    filePreview,
-    handleOnChange,
-    userInput,
-    handleOnUpdate,
     loading,
+    filePreview,
+    setFilePreview,
+    userInput,
+    handleOnChange,
+    handleSubmit,
   };
 };

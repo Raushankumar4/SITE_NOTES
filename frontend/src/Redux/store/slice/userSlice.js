@@ -6,6 +6,7 @@ const userSlce = createSlice({
     user: null,
     refresh: false,
     semesterPapers: null,
+    sessionalPapers: null,
   },
   reducers: {
     setUser: (state, action) => {
@@ -22,8 +23,22 @@ const userSlce = createSlice({
         (paper) => paper?._id !== action.payload
       );
     },
+    setSessionalPaper: (state, action) => {
+      state.sessionalPapers = action.payload;
+    },
+    deleteSessionalPaper: (state, action) => {
+      state.sessionalPapers = state.sessionalPapers?.filter(
+        (paper) => paper?._id !== action.payload
+      );
+    },
   },
 });
-export const { setUser, setRefresh, setSemesterPaper, deleteSemesterPaper } =
-  userSlce.actions;
+export const {
+  setUser,
+  setRefresh,
+  setSemesterPaper,
+  setSessionalPaper,
+  deleteSemesterPaper,
+  deleteSessionalPaper,
+} = userSlce.actions;
 export default userSlce.reducer;

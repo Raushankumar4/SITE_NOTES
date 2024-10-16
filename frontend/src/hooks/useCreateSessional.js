@@ -4,6 +4,7 @@ import axios from "axios";
 import { NOTES } from "../constant";
 import { toast } from "react-hot-toast";
 import { setRefresh } from "../Redux/store/slice/userSlice";
+import { useNavigate } from "react-router-dom";
 
 export const useCreateSessionalPaper = (semseterId) => {
   const token = useSelector((state) => state.auth.token);
@@ -18,6 +19,7 @@ export const useCreateSessionalPaper = (semseterId) => {
     selectYear: "",
     sessionalPdf: null,
   });
+  const navigate = useNavigate();
   const validateForm = () => {
     const { title, description, branch, selectYear, sessionalPdf } = userInput;
     const newErrors = {};
@@ -50,9 +52,9 @@ export const useCreateSessionalPaper = (semseterId) => {
   const handleCreateSessional = async (e) => {
     if (!token) return;
     e.preventDefault();
-    setLoading(true);
     const validationErrors = validateForm();
     if (validationErrors) return;
+    setLoading(true);
     const formData = new FormData();
     if (userInput.sessionalPdf)
       formData.append("sessionalPdf", userInput.sessionalPdf);
@@ -74,6 +76,7 @@ export const useCreateSessionalPaper = (semseterId) => {
       );
       dispatch(setRefresh(true));
       toast.success(data?.message);
+      navigate(-1);
       console.log(data);
     } catch (error) {
       toast.error(error?.response?.data?.message || error?.message);

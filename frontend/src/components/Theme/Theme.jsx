@@ -18,9 +18,9 @@ const Theme = () => {
       className="inline-block  relative group text-xl cursor-pointer "
     >
       {theme === "" ? (
-        <FaMoon className="text-lg" />
-      ) : (
         <FaSun className="text-lg" />
+      ) : (
+        <FaMoon className="text-lg" />
       )}
       <motion.span
         class="absolute bottom-4 left-0 bg-[#08090A] text-white text-sm p-1 rounded transition-opacity duration-200 hidden group-hover:block"

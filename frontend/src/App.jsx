@@ -21,9 +21,9 @@ const App = () => {
   }, []);
 
   return (
-    <div className="bg-[#FFFFFF] dark:bg-gray-600">
+    <div className="bg-[#EFEFEF]  dark:bg-[#363636]">
       <Navbar />
-      <main>
+      <main className="p-4">
         <Outlet />
       </main>
     </div>

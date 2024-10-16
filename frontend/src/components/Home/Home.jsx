@@ -17,8 +17,8 @@ const Home = () => {
       <div className="flex justify-between items-center p-4">
         <div className="w-10  drop-shadow-md flex space-x-2 ">
           <img
-            src="https://static.vecteezy.com/system/resources/thumbnails/024/553/676/small_2x/skull-wearing-crown-logo-skull-king-sticker-pastel-cute-colors-generative-ai-png.png"
-            alt=""
+            src="Logo.png"
+            alt="logo"
           />
           <span className="pt-2 font-bold text-xl">Notes</span>
         </div>

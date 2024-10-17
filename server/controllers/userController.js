@@ -20,6 +20,7 @@ export const updateProfile = ErrorHandler(async (req, res) => {
     fullName,
     email,
     phoneNumber,
+    profile: req.file.path.replace("\\", "/") || null,
   })
     .select("-password")
     .exec();

@@ -16,7 +16,10 @@ export const InputArea = ({
 }) => {
   return (
     <div className="w-full ">
-      <label className={`text-gray-700 font-medium block mb-2 `} htmlFor={id}>
+      <label
+        className={`text-gray-700 dark:text-gray-200 font-medium block mb-2 `}
+        htmlFor={id}
+      >
         {label}
       </label>
 
@@ -30,12 +33,8 @@ export const InputArea = ({
         disabled={disabled}
         placeholder={placeholder}
         autoComplete={autoComplete}
-        className={`inline-block border  rounded-lg w-full p-2 leading-tight transition duration-200  focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-          error
-            ? "bg-red-600 border-2 ring-red-500 ring-1 outline-none"
-            : "border-gray-300 focus:border-gray-500"
-        } ${className || ""} ${
-          disabled ? "bg-gray-400 cursor-not-allowed" : "bg-white"
+        className={`"block w-full p-2 text-sm text-gray-900 border rounded-lg bg-gray-100 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700  dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 ${className} ${
+          disabled ? "cursor-not-allowed bg-[#dfdbdb]" : ""
         }`}
       />
       {error && <div className="text-red-500 text-sm mt-2">{error}</div>}

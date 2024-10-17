@@ -9,11 +9,12 @@ import {
   resetPassword,
 } from "../controllers/authController.js";
 import { isAuthenticated } from "../middleware/isAuthenticated.js";
+import { upload } from "../middleware/multer.js";
 
 const router = Router();
 
 // register user
-router.route("/register").post(register);
+router.route("/register").post(upload.single("profile"), register);
 // login user
 router.route("/students/login").post(loginUser);
 // login as admin

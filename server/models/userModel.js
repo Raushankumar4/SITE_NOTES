@@ -40,6 +40,9 @@ const userSchema = new mongoose.Schema(
       enum: ["student", "teacher"],
       default: "student",
     },
+    profile: {
+      type: String,
+    },
     resetPasswordExpire: {
       type: Date,
     },

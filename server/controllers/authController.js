@@ -40,6 +40,7 @@ export const register = ErrorHandler(async (req, res) => {
     role,
     selectBranch,
     phoneNumber,
+    profile: req.file.path.replace("\\", "/") || null,
   });
   if (!newUser) {
     return res.status(500).json({ message: "Error creating user" });

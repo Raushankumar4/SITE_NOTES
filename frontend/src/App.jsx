@@ -23,7 +23,7 @@ const App = () => {
   return (
     <div className="bg-[#EFEFEF]  dark:bg-[#363636]">
       <Navbar />
-      <main className="">
+      <main className="min-h-screen  dark:bg-[#363636]">
         <Outlet />
       </main>
     </div>

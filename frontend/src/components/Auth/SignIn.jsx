@@ -13,7 +13,7 @@ const SignInPage = () => {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   return (
     <>
-      {!isAuthenticated ? (
+      {!isAuthenticated && (
         <div className="flex items-center justify-center h-screen bg-gray-100">
           <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-xs">
             <h2 className="text-2xl font-bold mb-6 text-center">
@@ -81,8 +81,6 @@ const SignInPage = () => {
             </div>
           </div>
         </div>
-      ) : (
-        (window.location.href = "/")
       )}
     </>
   );

@@ -10,7 +10,7 @@ const AboutUs = () => {
 
   return (
     <motion.div
-      className="max-w-5xl mx-auto p-8 dark:bg-[#363636]  rounded-lg shadow-xl border-l-4 border-green-500"
+      className="max-w-5xl mx-auto p-8 dark:bg-[#363636]  rounded-lg shadow-xl border-l-4 border-gray-500"
       initial="hidden"
       animate="visible"
       variants={fadeIn}
@@ -18,7 +18,9 @@ const AboutUs = () => {
     >
       <div className="flex items-center mb-6 ">
         <FaUsers className="text-green-500 text-4xl mr-3 dark:text-[#0F3BFE]" />
-        <h2 className="text-3xl font-bold text-gray-800  dark:text-[#0F3BFE]">About Us</h2>
+        <h2 className="text-3xl font-bold text-gray-800  dark:text-[#0F3BFE]">
+          About Us
+        </h2>
       </div>
       <p className="text-lg text-gray-700 mb-4 dark:text-[#c9c9c9]">
         We are a dedicated team passionate about making knowledge accessible.

@@ -97,7 +97,7 @@ const Navbar = () => {
         <div className="mx-4 absolute top-15">
           {searchQuery && filteredPapers?.length > 0 ? (
             <div className="grid">
-              {filteredPapers.map((paper) => (
+              {filteredPapers?.map((paper) => (
                 <div
                   key={paper?._id}
                   className="w-1/3 p-3 dark:text-[#FFFFFF] outline-none focus:ring-1 focus:ring-gray-700 placeholder-gray-400"

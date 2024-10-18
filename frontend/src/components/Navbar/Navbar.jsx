@@ -19,12 +19,16 @@ const Navbar = () => {
 
   useEffect(() => {
     if (searchQuery) {
-      const filteredSemesterPapers = semesterPapers?.filter((paper) =>
-        paper?.title?.toLowerCase().includes(searchQuery.toLowerCase())
-      );
-      const filteredSessionalPapers = sessionalPapers?.filter((paper) =>
-        paper?.title?.toLowerCase().includes(searchQuery.toLowerCase())
-      );
+      const filteredSemesterPapers =
+        semesterPapers?.filter((paper) =>
+          paper?.title?.toLowerCase().includes(searchQuery.toLowerCase())
+        ) || [];
+
+      const filteredSessionalPapers =
+        sessionalPapers?.filter((paper) =>
+          paper?.title?.toLowerCase().includes(searchQuery.toLowerCase())
+        ) || [];
+
       setFilteredPapers([
         ...filteredSemesterPapers,
         ...filteredSessionalPapers,
@@ -87,29 +91,36 @@ const Navbar = () => {
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           placeholder="Search..."
-          className="md:w-1/2 p-3 dark:text-[#FFFFFF] dark:bg-[#3d3c3c] outline-none focus:ring-1 focus:ring-gray-700 rounded-full  placeholder-gray-400"
+          className="md:w-1/2 p-3 dark:text-[#FFFFFF] dark:bg-[#3d3c3c] outline-none focus:ring-1 focus:ring-gray-700 rounded-full placeholder-gray-400"
         />
 
-        {filteredPapers.length > 0 && (
-          <div className="mx-4 absolute top-15">
-            <div className="grid ">
-              {filteredPapers?.slice(0, 3)?.map((paper) => (
+        <div className="mx-4 absolute top-15">
+          {searchQuery && filteredPapers?.length > 0 ? (
+            <div className="grid">
+              {filteredPapers.map((paper) => (
                 <div
-                  key={paper._id}
-                  className="w-1/3 p-3 dark:text-[#FFFFFF]  outline-none focus:ring-1 focus:ring-gray-700   placeholder-gray-400"
+                  key={paper?._id}
+                  className="w-1/3 p-3 dark:text-[#FFFFFF] outline-none focus:ring-1 focus:ring-gray-700 placeholder-gray-400"
                 >
                   <Link
                     className="no-underline dark:text-[#eeeef2]"
-                    to={`/semesterPaper/sessionalPapers/${paper?._id} `}
+                    to={`/semesterPaper/sessionalPapers/${paper?._id}`}
                   >
                     {paper?.title}
                   </Link>
                 </div>
               ))}
             </div>
-          </div>
-        )}
+          ) : (
+            searchQuery && (
+              <div className="p-3 text-center text-gray-500 dark:text-gray-300">
+                Not Found
+              </div>
+            )
+          )}
+        </div>
       </div>
+
       {/* Sign In / Sign Up */}
       <div className="hidden md:flex ">
         <Theme />

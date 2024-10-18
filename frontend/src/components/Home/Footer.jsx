@@ -8,8 +8,10 @@ const Footer = ({ handleScrollTo }) => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* About Section */}
           <div>
-            <h3 className="text-lg font-bold mb-2">About Us</h3>
-            <p className="text-sm">
+            <h3 className="text-lg font-bold mb-2 dark:text-[#f5f6f8]">
+              About Us
+            </h3>
+            <p className="text-sm dark:text-[#c9c9c9]">
               We provide a seamless note-sharing experience, enabling
               collaboration and knowledge accessibility for all.
             </p>
@@ -17,17 +19,22 @@ const Footer = ({ handleScrollTo }) => {
 
           {/* Links Section */}
           <div>
-            <h3 className="text-lg font-bold mb-2">Quick Links</h3>
+            <h3 className="text-lg font-bold mb-2 dark:text-[#f5f6f8]">
+              Quick Links
+            </h3>
             <ul className="text-sm space-y-1">
               <li>
-                <button onClick={handleScrollTo} className="hover:underline">
+                <button
+                  onClick={handleScrollTo}
+                  className="hover:underline dark:text-[#c9c9c9]"
+                >
                   About
                 </button>
               </li>
               <li>
                 <a
                   href="mailto:raushanguptag@gmail.com"
-                  className="hover:underline text-[#272828] no-underline"
+                  className="hover:underline text-[#272828] dark:text-[#c9c9c9] no-underline"
                 >
                   Contact
                 </a>
@@ -35,13 +42,13 @@ const Footer = ({ handleScrollTo }) => {
               <li>
                 <button
                   onClick={handleScrollTo}
-                  className="hover:underline cursor-pointer"
+                  className="hover:underline cursor-pointer dark:text-[#c9c9c9]"
                 >
                   Terms of Service
                 </button>
               </li>
               <li>
-                <button onClick={handleScrollTo} className="hover:underline">
+                <button onClick={handleScrollTo} className="hover:underline dark:text-[#c9c9c9]">
                   Privacy Policy
                 </button>
               </li>
@@ -50,7 +57,7 @@ const Footer = ({ handleScrollTo }) => {
 
           {/* Social Media Section */}
           <div>
-            <h3 className="text-lg font-bold mb-2">Follow Us</h3>
+            <h3 className="text-lg font-bold mb-2 dark:text-[#f5f6f8]">Follow Us</h3>
             <div className="flex space-x-4">
               <a
                 href="https://www.facebook.com"
@@ -84,7 +91,7 @@ const Footer = ({ handleScrollTo }) => {
           </div>
         </div>
 
-        <div className="border-t border-gray-700 mt-6 pt-4 text-center">
+        <div className="border-t dark:text-[#c9c9c9] border-gray-700 mt-6 pt-4 text-center">
           <p className="text-sm">
             &copy; {new Date().getFullYear()} Site Notes. All rights reserved.
           </p>

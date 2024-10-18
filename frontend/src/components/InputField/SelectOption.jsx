@@ -13,14 +13,17 @@ const SelectOption = ({
 }) => {
   return (
     <div className="mb-4">
-      <label className="block text-md font-medium text-gray-700" htmlFor={id}>
+      <label
+        className="block dark:text-[#d2cbcb] plac text-md font-medium text-gray-700"
+        htmlFor={id}
+      >
         {label}
       </label>
       <select
         id={id}
         disabled={disabled}
         name={name}
-        className="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:ring focus:ring-blue-500  bg-gray-200 text-black dark:text-gray-200"
+        className="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:ring focus:ring-blue-500 dark:bg-[#363636]   bg-gray-200 dark:text-[#d2cbcb] "
         value={value}
         onChange={onChange}
         required={required}

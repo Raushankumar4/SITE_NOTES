@@ -43,14 +43,14 @@ const cardVariants = {
 const OurTeam = () => {
   return (
     <div className="max-w-6xl mx-auto p-8">
-      <h2 className="text-4xl font-bold text-center text-gray-800 dark:text-white mb-8">
+      <h2 className="text-4xl font-bold text-center dark:text-[#0F3BFE] text-gray-800  mb-8">
         Meet Our Team
       </h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6  ">
         {teamMembers.map((member, index) => (
           <motion.div
             key={index}
-            className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 text-center transition-transform transform hover:shadow-2xl"
+            className="dark:bg-[#363636] rounded-lg shadow-lg p-6 text-center transition-transform transform hover:shadow-2xl"
             initial="hidden"
             animate="visible"
             variants={cardVariants}

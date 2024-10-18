@@ -85,5 +85,6 @@ export const useCreateSem = () => {
     handleOnCreate,
     loadings,
     error,
+    setCreateSem,
   };
 };

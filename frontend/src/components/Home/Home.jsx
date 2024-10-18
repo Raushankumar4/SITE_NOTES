@@ -17,7 +17,7 @@ const Home = () => {
     <div className="max-w-5xl mx-auto">
       {/* Welcome Section */}
       <div className="flex justify-center items-center box-border md:h-[87.8vh] h-[90vh]">
-        <div className="bg-[#EFEFEF] dark:bg-gray-800 dark:text-white w-[90%] md:w-[96%] h-auto md:h-[92%] grid grid-cols-1 md:grid-cols-2 items-center shadow-lg rounded-md p-6 md:p-10 mb-2">
+        <div className="bg-[#EFEFEF] dark:bg-[#363636] dark:text-white w-[90%] md:w-[96%] h-auto md:h-[92%] grid grid-cols-1 md:grid-cols-2 items-center shadow-lg rounded-md p-6 md:p-10 mb-2">
           {/* Left Side Content */}
           <div className="flex flex-col items-center text-center">
             <img
@@ -37,7 +37,7 @@ const Home = () => {
 
             <Link
               to="/semesterPaper"
-              className="mt-4 bg-white dark:bg-blue-600 dark:text-white text-gray-800 px-4 py-2 rounded-xl no-underline shadow-md hover:shadow-lg transition"
+              className="mt-4 bg-[#000000] text-white dark:bg-[#0F3BFE] dark:text-white  px-4 py-2 rounded-xl no-underline shadow-md hover:shadow-lg transition"
             >
               Get Started
             </Link>

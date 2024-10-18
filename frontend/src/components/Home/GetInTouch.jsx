@@ -25,7 +25,7 @@ const GetInTouch = () => {
       <h2 className="text-4xl  dark:text-[#0F3BFE] font-bold text-center text-gray-800 mb-6">
         Get in Touch
       </h2>
-      <p className="text-lg text-[#878484]  dark:text-white text-center mb-4">
+      <p className="text-lg text-[#878484]  dark:text-[#c9c9c9] text-center mb-4">
         We’d love to hear from you! Choose a contact method below:
       </p>
       <div className="flex justify-center items-center md:flex-row md:space-x-4 space-y-4 md:space-y-0 mt-6">

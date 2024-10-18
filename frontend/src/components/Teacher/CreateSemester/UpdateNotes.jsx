@@ -84,7 +84,7 @@ const UpdateNotes = () => {
             accept="application/pdf,image/*"
             label="Seminar Notes"
             onChange={handleOnChange}
-            className="mt-4 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 placeholder:text-gray-400 placeholder-shown:text-gray-800 "
+            className="mt-4  placeholder:text-gray-400 placeholder-shown:text-gray-800 "
           />
         )}
         {filePreview && (

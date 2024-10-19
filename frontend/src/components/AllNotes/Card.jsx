@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { useGetAllSemesterPapers } from "../../hooks/useGetAllSemesterPapers";
 import { Link } from "react-router-dom";
 import SelectOption from "../InputField/SelectOption";
+import { useDeleteSemester } from "../../hooks/useDeleteSemesterPaper";
 
 const Card = () => {
   const options = [
@@ -32,10 +33,6 @@ const Card = () => {
   const [selectedBranch, setSelectedBranch] = useState("");
   const [selectedYear, setSelectedYear] = useState("");
 
-  const handleDelete = (id) => {
-    console.log(`Delete paper with ID: ${id}`);
-  };
-
   const filteredPapers = semesterPapers?.filter((paper) => {
     const matchesBranch = selectedBranch
       ? paper?.branch === selectedBranch
@@ -45,6 +42,19 @@ const Card = () => {
       : true;
     return matchesBranch && matchesYear;
   });
+
+  const { deletePaper } = useDeleteSemester();
+
+  if (!semesterPapers || semesterPapers.length === 0) {
+    return (
+      <div className="text-center text-lg">No semester papers available.</div>
+    );
+  }
+  const hanldeDeletePaper = (id) => {
+    if (window.confirm("Are you sure you want to delete this paper?")) {
+      deletePaper(id);
+    }
+  };
 
   return (
     <div className="mt-10 max-w-5xl mx-auto p-4">
@@ -58,7 +68,7 @@ const Card = () => {
             className="flex justify-center items-center w-full md:w-1/2 md:mr-2"
           />
         </div>
-        <div>
+        <div className="ml-10 md:ml-0">
           <SelectOption
             options={yearOptions}
             name="selectYear"
@@ -94,20 +104,20 @@ const Card = () => {
               <div className="p-2 flex justify-end bg-gray-100 space-x-2">
                 <Link
                   to={`view/${paper?._id}`}
-                  className="flex items-center text-blue-500 hover:text-blue-700 text-xs font-semibold"
+                  className="flex no-underline items-center text-blue-500 hover:text-blue-700 text-xs font-semibold"
                 >
                   <FaEye className="mr-1" />
                   View
                 </Link>
                 <Link
-                  to={`edit/${paper?._id}`}
-                  className="flex items-center text-green-500 hover:text-green-700 text-xs font-semibold"
+                  to={`updatePaper/${paper?._id}`}
+                  className="flex no-underline items-center text-green-500 hover:text-green-700 text-xs font-semibold"
                 >
                   <FaEdit className="mr-1" />
                   Edit
                 </Link>
                 <button
-                  onClick={() => handleDelete(paper?._id)}
+                  onClick={() => hanldeDeletePaper(paper?._id)}
                   className="flex items-center text-red-500 hover:text-red-700 text-xs font-semibold"
                 >
                   <FaTrash className="mr-1" />

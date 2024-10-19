@@ -55,8 +55,8 @@ const SemesterPapers = () => {
                 Download PDF
               </a>
             </div>
-            <Link to={`createSessional/${paper?._id}`}>Add New Paper</Link>
-            <Link to={`sessionalPapers/${paper?._id}`}>Sessional Papers</Link>
+            <Link to={`createSessional`}>Create Sessinal</Link>
+            <Link to={`sessionalPapers`}>Sessional Papers</Link>
           </div>
         ))}
       </div>

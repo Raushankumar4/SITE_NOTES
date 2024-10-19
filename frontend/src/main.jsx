@@ -35,17 +35,22 @@ const router = createBrowserRouter([
       { path: "forgotPassword", element: <ForgotPassword /> },
       { path: "reset-password/:token", element: <ResetPassword /> },
       { path: "profile", element: <Profile /> },
-      { path: "/profile/update", element: <UpdateProfile /> },
+      { path: "profile/update", element: <UpdateProfile /> },
       { path: "create", element: <CreateSem /> },
       { path: "semesterPaper", element: <Card /> },
       { path: "semesterPaper/view/:id", element: <SemesterPapers /> },
       { path: "updatePaper/:id", element: <UpdateNotes /> },
+      { path: "semesterPaper/updatePaper/:id", element: <UpdateNotes /> },
       {
-        path: "semesterPaper/createSessional/:id",
+        path: `${"semesterPaper/view/:id/createSessional"}`,
         element: <CreateSessional />,
       },
       {
-        path: "semesterPaper/sessionalPapers/:id",
+        path: `${"semesterPaper/view/:id/sessionalPapers/createSessional"}`,
+        element: <CreateSessional />,
+      },
+      {
+        path: "semesterPaper/view/:id/sessionalPapers",
         element: <SessionalPapers />,
       },
       {

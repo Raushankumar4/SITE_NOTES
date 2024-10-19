@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useGetSessionalPaper } from "../../hooks/useGetSessionalPaper";
 import { useSelector } from "react-redux";
 import { SERVER } from "../../constant";
@@ -23,10 +23,6 @@ const SessionalPapers = () => {
     }
   };
 
-  const handleAdd = () => {
-    nav(`/semesterPaper/createSessional/${id}`);
-  };
-
   const handleEdit = (paperId) => {
     nav(`/semesterPaper/updateSessional/${paperId}`);
   };
@@ -35,12 +31,12 @@ const SessionalPapers = () => {
     <div className="p-6 bg-gray-100 min-h-screen">
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-2xl font-bold">Sessional Papers</h1>
-        <button
-          onClick={handleAdd}
+        <Link
+          to={`createSessional`}
           className="flex items-center bg-blue-500 text-white px-4 py-2 rounded-md shadow hover:bg-blue-600 transition duration-200"
         >
           <FaPlus className="mr-2" /> Add Paper
-        </button>
+        </Link>
       </div>
       {sessionalPaper?.length > 0 ? (
         sessionalPaper?.map((paper) => (

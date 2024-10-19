@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { InputArea } from "../InputField/InputArea";
 import { useLoginUser } from "../../hooks/useLoginUser";
 import { Link, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { FaRegUser } from "react-icons/fa";
+import { FaRegEyeSlash, FaRegUser } from "react-icons/fa";
 import { RiLockPasswordLine } from "react-icons/ri";
+import { LuEye } from "react-icons/lu";
 
 const SignInPage = () => {
   const { userInput, error, handleOnChange, handleOnLogin, loading } =
@@ -12,6 +13,11 @@ const SignInPage = () => {
   const location = useLocation();
   const show = location.pathname === "/signIn";
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
 
   return (
     <>
@@ -25,7 +31,7 @@ const SignInPage = () => {
                 className="object-cover w-full h-full rounded-l-lg"
               />
             </div>
-            <div className="w-full p-4 md:w-1/2">
+            <div className="w-full p-4 mt-10 md:w-1/2">
               <h2 className="text-2xl font-bold mb-6 text-center">
                 {show ? "Student Login" : "Teacher Login"}
               </h2>
@@ -42,25 +48,31 @@ const SignInPage = () => {
                   icon={<FaRegUser />}
                   autoComplete="email"
                 />
-                <InputArea
-                  type="password"
-                  name="password"
-                  placeholder="Enter your password"
-                  id="password"
-                  onChange={handleOnChange}
-                  value={userInput.password}
-                  error={error.password}
-                  icon={<RiLockPasswordLine />}
-                  autoComplete="password"
-                />
+                <div className="relative mt-4">
+                  <InputArea
+                    type={showPassword ? "text" : "password"}
+                    name="password"
+                    placeholder="Enter your password"
+                    id="password"
+                    onChange={handleOnChange}
+                    value={userInput.password}
+                    error={error.password}
+                    icon={<RiLockPasswordLine />}
+                    autoComplete="password"
+                  />
+                  <span
+                    onClick={handleShowPassword}
+                    className="absolute right-3 top-3 cursor-pointer"
+                  >
+                    {showPassword ? <LuEye /> : <FaRegEyeSlash />}
+                  </span>
+                </div>
 
-                {/* Remember Me Checkbox */}
                 <div className="flex justify-between items-center mt-4">
                   <div>
                     <input
                       type="checkbox"
                       id="rememberMe"
-                      name="rememberMe"
                       className="mr-2 leading-tight"
                     />
                     <label
@@ -83,14 +95,14 @@ const SignInPage = () => {
                 <button
                   disabled={loading}
                   type="submit"
-                  className="mt-4 w-full  bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition duration-200"
+                  className="mt-4 w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition duration-200"
                 >
                   Sign In
                 </button>
               </form>
 
               <div className="flex flex-col items-center mt-4">
-                <p className="mt-2 text-gray-600 text-sm ">
+                <p className="mt-2 text-gray-600 text-sm">
                   Don't have an account?
                   <Link
                     to="/signUp"

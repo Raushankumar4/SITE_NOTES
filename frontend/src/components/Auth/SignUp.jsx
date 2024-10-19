@@ -31,10 +31,12 @@ const SignUp = () => {
 
   return (
     <>
-      {!isAuthenticated ? (
-        <div className="flex justify-center items-center min-h-screen bg-gray-100">
-          <div className="bg-white shadow-md rounded-lg p-8 w-full max-w-md">
-            <h2 className="text-2xl font-bold mb-6 text-center">Sign Up</h2>
+      {!isAuthenticated && (
+        <div className="flex justify-center items-center ">
+          <div className="shadow-2xl rounded-lg p-8 w-full max-w-md">
+            <h2 className="text-3xl font-bold mb-6 text-center dark:text-[#0F3BFE]">
+              Sign Up
+            </h2>
             <form onSubmit={handleOnRegister}>
               <InputArea
                 name="fullName"
@@ -118,8 +120,6 @@ const SignUp = () => {
             </div>
           </div>
         </div>
-      ) : (
-        (window.location.href = "/")
       )}
     </>
   );

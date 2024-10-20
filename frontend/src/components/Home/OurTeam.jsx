@@ -50,7 +50,7 @@ const OurTeam = () => {
         {teamMembers.map((member, index) => (
           <motion.div
             key={index}
-            className="dark:bg-[#363636] rounded-lg shadow-lg p-6 text-center transition-transform transform hover:shadow-2xl"
+            className="dark:bg-[#363636] backdrop-blur-sm backdrop-filter rounded-3xl shadow-lg p-6 text-center transition-transform transform hover:shadow-2xl"
             initial="hidden"
             animate="visible"
             variants={cardVariants}
@@ -62,13 +62,13 @@ const OurTeam = () => {
               alt={member.name}
               className="w-32 h-32 rounded-full mx-auto mb-4"
             />
-            <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-1">
+            <h3 className="text-xl font-semibold text-black dark:text-white mb-1">
               {member.name}
             </h3>
-            <p className="text-gray-600 dark:text-gray-300 mb-2">
+            <p className="text-gray-300 dark:text-gray-300 mb-2">
               {member.position}
             </p>
-            <p className="text-gray-500 dark:text-gray-400 mb-4">
+            <p className="text-gray-400 dark:text-gray-400 mb-4">
               {member.description}
             </p>
             <div className="flex justify-center space-x-3">

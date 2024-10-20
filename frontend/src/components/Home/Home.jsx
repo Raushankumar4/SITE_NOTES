@@ -15,10 +15,10 @@ const Home = () => {
   };
 
   return (
-    <div className="max-w-5xl mx-auto">
+    <div className="max-w-5xl mt-4 mx-auto">
       {/* Welcome Section */}
       <div className="flex justify-center items-center box-border md:h-[87.8vh] h-[90vh]">
-        <div className="glass-card w-[90%] md:w-[96%] h-auto md:h-[92%] grid grid-cols-1 md:grid-cols-2 items-center p-6 md:p-10 mb-2">
+        <div className="backdrop-blur-sm backdrop-filter rounded-3xl shadow-lg dark:bg-[#36363653] w-[90%] md:w-[96%] h-auto md:h-[92%] grid grid-cols-1 md:grid-cols-2 items-center p-6 md:p-10 mb-2">
           {/* Left Side Content */}
           <div className="flex flex-col items-center text-center">
             <img

@@ -50,7 +50,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="glass-card dark:text-[#FFFFFF] dark:bg-[#363636] text-[#000000] flex items-center justify-between p-3 sticky top-0 z-50">
+    <nav className="backdrop-blur-sm backdrop-filter shadow-gray-600 shadow-lg dark:text-[#FFFFFF] dark:bg-[#363636] text-[#000000] flex items-center justify-between p-3 sticky top-0 z-50">
       <div className="text-lg font-bold hidden md:block">
         <img
           className="w-10 pb-2 inline-block"

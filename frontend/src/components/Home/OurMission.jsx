@@ -10,7 +10,7 @@ const OurMission = () => {
 
   return (
     <motion.div
-      className="max-w-5xl  mx-auto p-6 bg-[#EFEFEF] rounded-lg shadow-2xl border-l-4 border-[#a6a1a1] dark:bg-[#363636] dark:text-[#d2cbcb] dark:border-blue-500"
+      className="max-w-5xl  mx-auto p-6 backdrop-blur-sm backdrop-filter rounded-3xl shadow-lg border-l-4 border-[#a6a1a1] dark:bg-[#363636] dark:text-[#d2cbcb] dark:border-blue-500"
       initial="hidden"
       animate="visible"
       variants={fadeIn}

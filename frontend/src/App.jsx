@@ -21,9 +21,9 @@ const App = () => {
   }, [isAuthenticated, navigate]);
 
   return (
-    <div className="body min-h-screen">
+    <div className="body min-h-screen ">
       <Navbar />
-      <main className="min-h-screen dark:bg-[#363636]">
+      <main className=" ">
         <Outlet />
       </main>
     </div>

@@ -22,8 +22,8 @@ const SignInPage = () => {
   return (
     <>
       {!isAuthenticated && (
-        <div className="flex items-center justify-center min-h-screen ">
-          <div className="glass p-8 rounded-lg shadow-md w-full max-w-4xl flex flex-col md:flex-row">
+        <div className="flex items-center justify-center md:h-[88vh] h-[91.4vh] mx-4">
+          <div className="backdrop-blur-sm backdrop-filter rounded-3xl shadow-lg p-8    w-full max-w-4xl flex flex-col md:flex-row">
             <div className="md:w-1/2 hidden md:block">
               <img
                 src="https://static.vecteezy.com/system/resources/previews/012/421/877/non_2x/3d-multitasking-man-free-png.png"
@@ -31,7 +31,7 @@ const SignInPage = () => {
                 className="object-cover w-full h-full rounded-l-lg"
               />
             </div>
-            <div className="w-full p-4 mt-10 md:w-1/2">
+            <div className="w-full  p-4 md:mt-10 md:w-1/2">
               <h2 className="text-2xl font-bold mb-6 text-center">
                 {show ? "Student Login" : "Teacher Login"}
               </h2>

@@ -4,7 +4,6 @@ import { useGetAllSemesterPapers } from "../../hooks/useGetAllSemesterPapers";
 import { SERVER } from "../../constant";
 import { useDeleteSemester } from "../../hooks/useDeleteSemesterPaper";
 import { Link, useParams } from "react-router-dom";
-import CustomPdfViewer from "../AllNotes/CustomPdfViewer";
 import { FaTrash, FaPlusCircle, FaFilePdf, FaDownload } from "react-icons/fa";
 import SessionalCard from "./SessionalCard";
 

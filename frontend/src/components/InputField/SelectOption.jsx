@@ -34,7 +34,7 @@ const SelectOption = ({
           onChange={onChange}
           required={required}
         >
-          <option value="">Select {label.toLowerCase()}</option>
+          <option value="">Select {label?.toLowerCase()}</option>
           {options.map((option) => (
             <option
               className="glass-card"

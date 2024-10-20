@@ -54,12 +54,22 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="min-h-screen grid grid-cols-1 gap-4 px-4">
-        <OurMission />
-        <AboutUs />
-        <OurTeam />
-        <GetInTouch />
-        <Footer handleScrollTo={handleScrollTo} />
+      <div>
+        <div className="mx-4">
+          <OurMission />
+        </div>
+        <div className="mx-4">
+          <AboutUs />
+        </div>
+        <div className="mx-4">
+          <OurTeam />
+        </div>
+        <div>
+          <GetInTouch />
+        </div>
+        <div className="mx-10">
+          <Footer />
+        </div>
       </div>
     </div>
   );

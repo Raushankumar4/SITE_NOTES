@@ -1,23 +1,19 @@
 import React, { useState } from "react";
-import { FaEye, FaEdit, FaTrash } from "react-icons/fa";
-import { useSelector } from "react-redux";
-import { useGetAllSemesterPapers } from "../../hooks/useGetAllSemesterPapers";
-import { Link } from "react-router-dom";
 import SelectOption from "../InputField/SelectOption";
-import { useDeleteSemester } from "../../hooks/useDeleteSemesterPaper";
+import { FaEdit, FaEye, FaTrash } from "react-icons/fa";
+import { Link, useParams } from "react-router-dom";
+import { useGetSessionalPaper } from "../../hooks/useGetSessionalPaper";
+import { useSelector } from "react-redux";
+import { useDeleteSessional } from "../../hooks/useDeleteSessional";
 
-const Card = () => {
-  const options = [
+const SessionalCard = () => {
+  const allBranches = [
     { value: "CSE", label: "CSE" },
     { value: "ECE", label: "ECE" },
-    { value: "EEE", label: "EEE" },
     { value: "MECH", label: "MECH" },
+    { value: "CE", label: "CE" },
     { value: "CIVIL", label: "CIVIL" },
     { value: "IT", label: "IT" },
-    { value: "EIE", label: "EIE" },
-    { value: "CHEMICAL", label: "CHEMICAL" },
-    { value: "BIOTECH", label: "BIOTECH" },
-    { value: "OTHERS", label: "OTHERS" },
   ];
 
   const yearOptions = [
@@ -26,42 +22,40 @@ const Card = () => {
     { value: "III", label: "III" },
     { value: "IV", label: "IV" },
   ];
+  const { id } = useParams();
+  useGetSessionalPaper(id);
+  const { sessionalPapers } = useSelector((state) => state.user);
+  const sessionalPaper = sessionalPapers?.filter((paper) => paper?.note === id);
 
-  const { semesterPapers } = useSelector((state) => state.user);
-  useGetAllSemesterPapers();
+  const { deleteSessional } = useDeleteSessional();
 
+  const handleDelete = (paperId) => {
+    if (window.confirm("Are you sure you want to delete this paper?")) {
+      deleteSessional(paperId);
+    }
+  };
+  if (!sessionalPapers || sessionalPapers?.length === 0) {
+    return (
+      <div className="text-center text-lg">No sessional papers available.</div>
+    );
+  }
   const [selectedBranch, setSelectedBranch] = useState("");
   const [selectedYear, setSelectedYear] = useState("");
 
-  const filteredPapers = semesterPapers?.filter((paper) => {
+  const filterSessional = sessionalPapers?.filter((paper) => {
     const matchesBranch = selectedBranch
       ? paper?.branch === selectedBranch
       : true;
-    const matchesYear = selectedYear
-      ? paper?.selectYear === selectedYear
-      : true;
+    const matchesYear = selectedYear ? paper?.year === selectedYear : true;
     return matchesBranch && matchesYear;
   });
-
-  const { deletePaper } = useDeleteSemester();
-
-  if (!semesterPapers || semesterPapers.length === 0) {
-    return (
-      <div className="text-center text-lg">No semester papers available.</div>
-    );
-  }
-  const hanldeDeletePaper = (id) => {
-    if (window.confirm("Are you sure you want to delete this paper?")) {
-      deletePaper(id);
-    }
-  };
 
   return (
     <div className="mt-10 max-w-5xl mx-auto p-4">
       <div className="flex flex-col md:flex-row justify-between mb-4">
         <div className="ml-10">
           <SelectOption
-            options={options}
+            options={allBranches}
             name="selectBranch"
             label="Select Branch"
             onChange={(e) => setSelectedBranch(e.target.value)}
@@ -76,13 +70,13 @@ const Card = () => {
           />
         </div>
       </div>
-      {filteredPapers?.length === 0 ? (
+      {filterSessional?.length === 0 ? (
         <h1 className="text-lg text-gray-700 text-center">
-          No semester papers available.
+          No Sessional papers available.
         </h1>
       ) : (
         <ul className="space-y-4">
-          {filteredPapers?.map((paper) => (
+          {filterSessional?.map((paper) => (
             <li
               key={paper?._id}
               className="glass shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
@@ -108,14 +102,14 @@ const Card = () => {
                   View
                 </Link>
                 <Link
-                  to={`updatePaper/${paper?._id}`}
+                  to={`view/${paper?._id}`}
                   className="flex no-underline items-center text-green-500 hover:text-green-700 text-xs font-semibold"
                 >
                   <FaEdit className="mr-1" />
                   Edit
                 </Link>
                 <button
-                  onClick={() => hanldeDeletePaper(paper?._id)}
+                  onClick={() => handleDelete(paper?._id)}
                   className="flex items-center text-red-500 hover:text-red-700 text-xs font-semibold"
                 >
                   <FaTrash className="mr-1" />
@@ -130,4 +124,4 @@ const Card = () => {
   );
 };
 
-export default Card;
+export default SessionalCard;

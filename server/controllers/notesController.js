@@ -129,7 +129,8 @@ export const updateNotes = ErrorHandler(async (req, res) => {
 export const deleteNote = ErrorHandler(async (req, res) => {
   const { id } = req.params;
   const deletedNote = await Note.findByIdAndDelete(id);
-  if (!deletedNote) {
+  const sessional = await Sessional.deleteMany({ note: id });
+  if (!deletedNote || !sessional) {
     return res.status(404).json({ message: "Not found" });
   }
   return res.status(200).json({ message: "Deleted" });
@@ -151,7 +152,7 @@ export const updateSessionalPaper = ErrorHandler(async (req, res) => {
       title,
       description,
       branch,
-      sessionalPdf: fileLocalPath.replace("\\", "/"),
+      sessionalPdf: fileLocalPath,
       selectYear,
     },
     { new: true }

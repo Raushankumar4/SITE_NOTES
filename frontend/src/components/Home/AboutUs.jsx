@@ -10,7 +10,7 @@ const AboutUs = () => {
 
   return (
     <motion.div
-      className="max-w-5xl mx-auto p-8 dark:bg-[#363636]  rounded-lg shadow-xl border-l-4 border-gray-500"
+      className="max-w-5xl mt-10 mx-auto p-8 dark:bg-[#363636]  rounded-lg shadow-xl border-l-4 border-gray-500"
       initial="hidden"
       animate="visible"
       variants={fadeIn}

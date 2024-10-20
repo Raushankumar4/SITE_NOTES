@@ -21,13 +21,11 @@ const App = () => {
   }, [isAuthenticated, navigate]);
 
   return (
-    <div className={`bg-[#000000] dark:bg-[#363636] min-h-screen`}>
-      <div className="bg-gradient-to-r from-neutral-300 to-stone-400 min-h-screen">
-        <Navbar />
-        <main className="min-h-screen dark:bg-[#363636]">
-          <Outlet />
-        </main>
-      </div>
+    <div className="body min-h-screen">
+      <Navbar />
+      <main className="min-h-screen dark:bg-[#363636]">
+        <Outlet />
+      </main>
     </div>
   );
 };

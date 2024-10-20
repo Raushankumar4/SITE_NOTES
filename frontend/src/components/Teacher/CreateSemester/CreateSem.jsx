@@ -41,7 +41,7 @@ const CreateSem = () => {
 
   return (
     <div className="h-screen flex justify-center items-center p-4">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-5xl dark:bg-[#363636] bg-gray-100 shadow-lg rounded-lg p-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-5xl dark:bg-[#363636] shadow-xl rounded-lg p-6">
         <div className="flex justify-center items-center">
           <img
             className="w-full h-auto object-cover rounded-lg"
@@ -89,7 +89,7 @@ const CreateSem = () => {
                 <InputArea
                   type="file"
                   name="notesPdf"
-                  accept="application/pdf,image/*"
+                  accept="application/pdf, image/*"
                   label="Seminar Notes"
                   onChange={handleOnChange}
                   error={error.notesPdf}
@@ -146,7 +146,9 @@ const CreateSem = () => {
               exit={{ scale: 0.8 }}
               transition={{ type: "spring", stiffness: 300 }}
             >
-              <h2 className="text-xl font-bold mb-2 text-[#0F3BFE]">File Preview</h2>
+              <h2 className="text-xl font-bold mb-2 text-[#0F3BFE]">
+                File Preview
+              </h2>
               <iframe
                 className="w-full h-64 border"
                 src={filePreview}

@@ -28,23 +28,23 @@ const GetInTouch = () => {
       <p className="text-lg text-[#878484]  dark:text-[#c9c9c9] text-center mb-4">
         We’d love to hear from you! Choose a contact method below:
       </p>
-      <div className="flex justify-center items-center md:flex-row md:space-x-4 space-y-4 md:space-y-0 mt-6">
-        {/* Email Contact */}
-        <a
-          href="mailto:raushankumarguptag@gmail.com"
-          className="flex items-center p-4 no-underline  dark:text-white  rounded-md transition flex-grow"
-        >
-          <FaEnvelope className="text-blue-500 text-2xl mr-3" />
-          <span className="  rounded-2xl text-[#878484]">Email Us</span>
-        </a>
-
-        <a
-          href="tel:+919852185318"
-          className="flex no-underline items-center p-4 rounded-md transition flex-grow"
-        >
-          <FaPhoneAlt className="text-green-500 text-2xl mr-3" />
-          <span className="  rounded-2xl text-[#878484]">Call Us</span>
-        </a>
+      <div className="flex justify-center items-center md:flex-row md:space-x-4 space-y-4 md:space-y-0 mt-2">
+        <div className="flex space-x-2">
+          <a
+            href="mailto:raushankumarguptag@gmail.com"
+            className="flex items-center p-4 no-underline  dark:text-white  rounded-md transition flex-grow"
+          >
+            <FaEnvelope className="text-blue-500 text-2xl mr-3" />
+            <span className="  rounded-2xl text-[#878484]">Email Us</span>
+          </a>
+          <a
+            href="tel:+919852185318"
+            className="flex no-underline items-center p-4 rounded-md transition flex-grow"
+          >
+            <FaPhoneAlt className="text-green-500 text-2xl mr-3" />
+            <span className="  rounded-2xl text-[#878484]">Call Us</span>
+          </a>
+        </div>
       </div>
     </motion.div>
   );

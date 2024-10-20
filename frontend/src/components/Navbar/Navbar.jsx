@@ -240,7 +240,7 @@ const Navbar = () => {
               <li className="text-[#030303] no-underline text-lg    dark:text-[#FFFFFF] dark:bg-[#363636]">
                 <button
                   onClick={() => {
-                    navigate("/semesterPaper");
+                    navigate("semesterPaper");
                     toggleMenu();
                   }}
                   className="bg-[#000000] no-underline dark:text-[#FFFFFF] dark:bg-[#0F3BFE]  text-[#ffff] hover:bg-blue-600 px-4 py-[10px] rounded-full"
@@ -251,6 +251,7 @@ const Navbar = () => {
               <li className="text-[#030303] no-underline text-lg    dark:text-[#FFFFFF] dark:bg-[#363636]">
                 <button
                   onClick={() => {
+                    navigate("/create");
                     toggleMenu();
                   }}
                   className="bg-[#000000] no-underline dark:text-[#FFFFFF] dark:bg-[#0F3BFE]  text-[#ffff] hover:bg-blue-600 px-4 py-[10px] rounded-full"

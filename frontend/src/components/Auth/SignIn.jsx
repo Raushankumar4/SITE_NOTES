@@ -22,8 +22,8 @@ const SignInPage = () => {
   return (
     <>
       {!isAuthenticated && (
-        <div className="flex items-center justify-center min-h-screen bg-gray-100">
-          <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-4xl flex flex-col md:flex-row">
+        <div className="flex items-center justify-center min-h-screen ">
+          <div className="glass p-8 rounded-lg shadow-md w-full max-w-4xl flex flex-col md:flex-row">
             <div className="md:w-1/2 hidden md:block">
               <img
                 src="https://static.vecteezy.com/system/resources/previews/012/421/877/non_2x/3d-multitasking-man-free-png.png"
@@ -95,7 +95,7 @@ const SignInPage = () => {
                 <button
                   disabled={loading}
                   type="submit"
-                  className="mt-4 w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition duration-200"
+                  className="mt-4 w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-xl transition duration-200"
                 >
                   Sign In
                 </button>

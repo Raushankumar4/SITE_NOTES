@@ -24,7 +24,7 @@ export const InputArea = ({
         {label}
       </label>
       <div className="flex items-center border-b-2 border-b-slate-400 mt-4">
-        {icon && <span className="mr-2 text-lg text-gray-500">{icon}</span>}
+        {icon && <span className="mr-2 text-lg text-[#3c3a3a]">{icon}</span>}
         <input
           type={type}
           name={name}
@@ -35,7 +35,7 @@ export const InputArea = ({
           disabled={disabled}
           placeholder={placeholder}
           autoComplete={autoComplete}
-          className={`outline-none w-full py-2 placeholder-gray-400 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 ${
+          className={`outline-none w-full py-2 bg-transparent placeholder-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 ${
             className || ""
           } ${disabled ? "cursor-not-allowed bg-[#dfdbdb]" : ""}`}
         />

@@ -65,7 +65,6 @@ const Card = () => {
             name="selectBranch"
             label="Select Branch"
             onChange={(e) => setSelectedBranch(e.target.value)}
-            className="flex justify-center items-center w-full md:w-1/2 md:mr-2"
           />
         </div>
         <div className="ml-10 md:ml-0">
@@ -74,7 +73,6 @@ const Card = () => {
             name="selectYear"
             label="Select Year"
             onChange={(e) => setSelectedYear(e.target.value)}
-            className="w-full md:w-1/2 md:ml-2"
           />
         </div>
       </div>
@@ -87,7 +85,7 @@ const Card = () => {
           {filteredPapers?.map((paper) => (
             <li
               key={paper?._id}
-              className="bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
+              className="glass shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
             >
               <div className="p-4">
                 <h2 className="text-lg font-semibold text-gray-800 truncate">
@@ -101,7 +99,7 @@ const Card = () => {
                   <span>Year: {paper?.selectYear?.length}</span>
                 </div>
               </div>
-              <div className="p-2 flex justify-end bg-gray-100 space-x-2">
+              <div className="p-2 flex justify-end bg-[#fefdff0f] space-x-2">
                 <Link
                   to={`view/${paper?._id}`}
                   className="flex no-underline items-center text-blue-500 hover:text-blue-700 text-xs font-semibold"

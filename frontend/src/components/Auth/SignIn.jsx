@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { FaRegEyeSlash, FaRegUser } from "react-icons/fa";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { LuEye } from "react-icons/lu";
+import LoadingSpinner from "../Loading/LoadingSpinner";
 
 const SignInPage = () => {
   const { userInput, error, handleOnChange, handleOnLogin, loading } =
@@ -97,7 +98,11 @@ const SignInPage = () => {
                   type="submit"
                   className="mt-4 w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-xl transition duration-200"
                 >
-                  Sign In
+                  {loading ? (
+                    <LoadingSpinner className="inline-block" />
+                  ) : (
+                    "Login"
+                  )}
                 </button>
               </form>
 

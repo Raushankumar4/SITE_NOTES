@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.8",
+    "aos": "^2.3.4",
     "axios": "^1.7.7",
     "bootstrap": "^5.3.3",
     "framer": "^2.4.1",

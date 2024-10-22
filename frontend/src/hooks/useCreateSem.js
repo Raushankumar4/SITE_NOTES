@@ -3,6 +3,7 @@ import axios from "axios";
 import { NOTES } from "../constant";
 import { toast } from "react-hot-toast";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 export const useCreateSem = () => {
   const [createSem, setCreateSem] = useState({
@@ -16,6 +17,7 @@ export const useCreateSem = () => {
   const [loadings, setLoadings] = useState(false);
   const [error, setError] = useState({});
   const token = useSelector((state) => state.auth.token);
+  const navigate = useNavigate();
   const handleOnChange = (e) => {
     const { name, files, value } = e.target;
     if (name === "notesPdf") {
@@ -43,7 +45,7 @@ export const useCreateSem = () => {
     if (!description) newErrors.description = "description is required";
     if (!notesPdf) newErrors.notesPdf = "notesPdf is required";
     if (!branch) newErrors.branch = "branch is required";
-    if (!selectYear) newErrors.selectYear = "selectYear is required";
+    if (!selectYear) newErrors.selectYear = "year is required";
 
     setError(newErrors);
     return Object.keys(newErrors).length === 0 ? null : newErrors;
@@ -68,6 +70,7 @@ export const useCreateSem = () => {
         },
         withCredentials: true,
       });
+      navigate("/semesterPaper");
       toast.success(data?.message);
       console.log(data);
     } catch (error) {

@@ -70,20 +70,7 @@ const SignInPage = () => {
                 </div>
 
                 <div className="flex justify-between items-center mt-4">
-                  <div>
-                    <input
-                      type="checkbox"
-                      id="rememberMe"
-                      className="mr-2 leading-tight"
-                    />
-                    <label
-                      htmlFor="rememberMe"
-                      className="text-sm text-gray-700"
-                    >
-                      Remember Me
-                    </label>
-                  </div>
-                  <div className="flex justify-end">
+                  <div className="flex mt-2 justify-end text-nowrap">
                     <Link
                       to="/forgotPassword"
                       className="text-blue-500 no-underline hover:underline text-sm"

@@ -39,118 +39,108 @@ const SignUp = () => {
   ];
 
   return (
-    <>
-      {!isAuthenticated && (
-        <div className="flex justify-center items-center">
-          <div className="backdrop-blur-sm backdrop-filter rounded-3xl shadow-lg  mt-10  p-8 w-full max-w-xl mx-4">
-            <h2 className="text-3xl font-bold mb-6 text-center dark:text-[#0F3BFE]">
-              Sign Up
-            </h2>
-            <form onSubmit={handleOnRegister}>
-              <div className="flex space-x-4 items-center  md:justify-around mt-4">
-                <div>
-                  <InputArea
-                    name="fullName"
-                    type="text"
-                    placeholder="Enter your name"
-                    value={userInput.fullName}
-                    onChange={handleOnChange}
-                    error={error?.fullName}
-                    icon={<FaUser />}
-                  />
-                </div>
-                <div>
-                  <InputArea
-                    name="email"
-                    type="email"
-                    placeholder="Enter your email"
-                    value={userInput.email}
-                    onChange={handleOnChange}
-                    error={error?.email}
-                    icon={<FaEnvelope />}
-                  />
-                </div>
-              </div>
-
-              <div className="flex mt-4 space-x-4 md:justify-around relative">
-                <div>
-                  <InputArea
-                    name="password"
-                    type={showPassword ? "text" : "password"}
-                    placeholder="Enter your password"
-                    value={userInput.password}
-                    onChange={handleOnChange}
-                    error={error?.password}
-                    className="flex-grow"
-                    icon={<FaLock />}
-                  />
-                  <button
-                    type="button"
-                    onClick={() => setShowPassword(!showPassword)}
-                    className="absolute bottom-3 left-[40%] text-blue-500"
-                  >
-                    {showPassword ? <FaEyeSlash /> : <FaEye />}
-                  </button>
-                </div>
-                <div>
-                  <InputArea
-                    name="phoneNumber"
-                    type="number"
-                    placeholder="Enter your phone number"
-                    value={userInput.phoneNumber}
-                    onChange={handleOnChange}
-                    error={error?.phoneNumber}
-                    icon={<FaPhone />}
-                  />
-                </div>
-              </div>
-              <div className="flex space-x-4 items-center md:justify-around mt-5">
-                <div>
-                  <SelectOption
-                    id="role"
-                    name="role"
-                    label="Role"
-                    value={userInput.role}
-                    onChange={handleOnChange}
-                    error={error?.role}
-                    options={selectRole}
-                    className="w-fit"
-                  />
-                </div>
-                <div>
-                  <SelectOption
-                    id="selectBranch"
-                    name="selectBranch"
-                    label="Select Branch"
-                    value={userInput.selectBranch}
-                    onChange={handleOnChange}
-                    error={error?.selectBranch}
-                    options={selectCourseBranch}
-                  />
-                </div>
-              </div>
-              <button
-                type="submit"
-                disabled={loading}
-                className={`mt-4 w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-xl transition duration-200 ${
-                  loading ? "opacity-50 cursor-not-allowed" : ""
-                }`}
-              >
-                Sign Up
-              </button>
-            </form>
-            <div className="mt-4 text-center">
-              <p className="text-gray-600">
-                Already have an account?{" "}
-                <Link to="/signIn" className="text-blue-500 hover:underline">
-                  Log In
-                </Link>
-              </p>
+    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+      <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-xl">
+        <h2 className="text-2xl font-bold mb-6 text-center">Register</h2>
+        <form onSubmit={handleOnRegister}>
+          <div className="grid grid-cols-1 gap-4 mb-4 md:grid-cols-2">
+            <div>
+              <InputArea
+                name="fullName"
+                type="text"
+                placeholder="Enter your name"
+                value={userInput.fullName}
+                onChange={handleOnChange}
+                error={error?.fullName}
+                icon={<FaUser />}
+              />
+            </div>
+            <div>
+              <InputArea
+                name="email"
+                type="email"
+                placeholder="Enter your email"
+                value={userInput.email}
+                onChange={handleOnChange}
+                error={error?.email}
+                icon={<FaEnvelope />}
+              />
             </div>
           </div>
+          <div className="grid grid-cols-1 gap-4 mb-4 md:grid-cols-2">
+            <div className="relative">
+              <InputArea
+                name="password"
+                type={showPassword ? "text" : "password"}
+                placeholder="Enter your password"
+                value={userInput.password}
+                onChange={handleOnChange}
+                error={error?.password}
+                className="flex-grow"
+                icon={<FaLock />}
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute inset-y-11 right-0 flex items-center pr-3 text-gray-500 hover:text-blue-500 focus:outline-none"
+              >
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
+              </button>
+            </div>
+            <div>
+              <InputArea
+                name="phoneNumber"
+                type="number"
+                placeholder="Enter phone number"
+                value={userInput.phoneNumber}
+                onChange={handleOnChange}
+                error={error?.phoneNumber}
+                icon={<FaPhone />}
+              />
+            </div>
+          </div>
+          <div className="grid grid-cols-1 gap-4 mb-4 md:grid-cols-2">
+            <div>
+              <SelectOption
+                id="selectBranch"
+                name="selectBranch"
+                label="Select Branch"
+                value={userInput.selectBranch}
+                onChange={handleOnChange}
+                error={error?.selectBranch}
+                options={selectCourseBranch}
+              />
+            </div>
+            <div>
+              <SelectOption
+                id="role"
+                name="role"
+                label="Role"
+                value={userInput.role}
+                onChange={handleOnChange}
+                error={error?.role}
+                options={selectRole}
+                className="w-fit"
+              />
+            </div>
+          </div>
+          <button
+            type="submit"
+            className="w-full bg-blue-500 text-white font-bold py-2 rounded hover:bg-blue-600 transition duration-200"
+          >
+            Register
+          </button>
+        </form>
+        <div className="mt-4 text-center">
+          <p className="text-gray-600">
+            Already have an account?{" "}
+            <Link to="signIn" className="text-blue-500 hover:underline">
+              Log in
+            </Link>
+          </p>
         </div>
-      )}
-    </>
+      </div>
+    </div>
   );
 };
 

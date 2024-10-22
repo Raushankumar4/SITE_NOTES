@@ -45,7 +45,7 @@ const SelectOption = ({
             </option>
           ))}
         </select>
-        {error && <p className="text-red-500">{error}</p>}
+        {error && <p className="text-red-500 text-sm">{error}</p>}
       </div>
     </div>
   );

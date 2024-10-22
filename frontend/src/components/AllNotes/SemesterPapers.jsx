@@ -45,7 +45,7 @@ const SemesterPapers = () => {
           <h1 className="text-3xl md:text-4xl font-semibold">
             Semester Papers
           </h1>
-          <h4 className="text-gray-100">Semester: {paper?.title}</h4>
+          <h4 className="text-gray-100 ">Semester: {paper?.title}</h4>
           <h4>Branch: {paper?.branch}</h4>
           <p className="text-gray-100">Year(s): {paper?.selectYear?.length}</p>
         </div>

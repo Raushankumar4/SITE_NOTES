@@ -51,16 +51,16 @@ const router = createBrowserRouter([
         element: <CreateSessional />,
       },
       {
-        path: "semesterPaper/view/:id/sessionalPapers",
+        path: "semesterPaper/view/:id/sessionalPaper/:id",
         element: <SessionalPapers />,
       },
       {
-        path: "/semesterPaper/view/:id/view/:id",
+        path: "semesterPaper/view/:id/view/:id",
         element: <SessionalCard />,
       },
 
       {
-        path: "semesterPaper/updateSessional/:id",
+        path: "semesterPaper/view/:id/updateSessional/:id",
         element: <UpdateSessional />,
       },
     ],

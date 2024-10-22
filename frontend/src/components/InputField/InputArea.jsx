@@ -23,7 +23,11 @@ export const InputArea = ({
       >
         {label}
       </label>
-      <div className="flex items-center border-b-2 border-b-slate-400 mt-4">
+      <div
+        className={`flex items-center ${
+          type !== "file" ? "border-b-2 border-b-slate-400 " : ""
+        } mt-2`}
+      >
         {icon && <span className="mr-2 text-lg text-[#3c3a3a]">{icon}</span>}
         <input
           type={type}
@@ -40,7 +44,7 @@ export const InputArea = ({
           } ${disabled ? "cursor-not-allowed bg-[#dfdbdb]" : ""}`}
         />
       </div>
-      {error && <div className="text-red-500 text-sm mt-2">{error}</div>}
+      {error && <div className="text-red-500 text-sm ">{error}</div>}
     </div>
   );
 };

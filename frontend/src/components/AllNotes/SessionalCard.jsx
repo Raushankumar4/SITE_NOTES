@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import SelectOption from "../InputField/SelectOption";
-import { FaEdit, FaEye, FaTrash } from "react-icons/fa";
-import { Link, useParams } from "react-router-dom";
+import { FaEdit, FaEye, FaTrash, FaDownload } from "react-icons/fa";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useGetSessionalPaper } from "../../hooks/useGetSessionalPaper";
 import { useSelector } from "react-redux";
 import { useDeleteSessional } from "../../hooks/useDeleteSessional";
+import { SERVER } from "../../constant";
 
 const SessionalCard = () => {
   const allBranches = [
@@ -22,23 +23,27 @@ const SessionalCard = () => {
     { value: "III", label: "III" },
     { value: "IV", label: "IV" },
   ];
+
   const { id } = useParams();
   useGetSessionalPaper(id);
   const { sessionalPapers } = useSelector((state) => state.user);
-  const sessionalPaper = sessionalPapers?.filter((paper) => paper?.note === id);
 
   const { deleteSessional } = useDeleteSessional();
-
+  const navigate = useNavigate();
   const handleDelete = (paperId) => {
     if (window.confirm("Are you sure you want to delete this paper?")) {
-      deleteSessional(paperId);
+      deleteSessional(paperId).then(() => {
+        navigate(-1);
+      });
     }
   };
+
   if (!sessionalPapers || sessionalPapers?.length === 0) {
     return (
       <div className="text-center text-lg">No sessional papers available.</div>
     );
   }
+
   const [selectedBranch, setSelectedBranch] = useState("");
   const [selectedYear, setSelectedYear] = useState("");
 
@@ -46,7 +51,9 @@ const SessionalCard = () => {
     const matchesBranch = selectedBranch
       ? paper?.branch === selectedBranch
       : true;
-    const matchesYear = selectedYear ? paper?.year === selectedYear : true;
+    const matchesYear = selectedYear
+      ? paper?.selectYear === selectedYear
+      : true;
     return matchesBranch && matchesYear;
   });
 
@@ -70,6 +77,7 @@ const SessionalCard = () => {
           />
         </div>
       </div>
+
       {filterSessional?.length === 0 ? (
         <h1 className="text-lg text-gray-700 text-center">
           No Sessional papers available.
@@ -95,19 +103,35 @@ const SessionalCard = () => {
               </div>
               <div className="p-2 flex justify-end bg-[#fefdff0f] space-x-2">
                 <Link
-                  to={`view/${paper?._id}`}
+                  to={`sessionalPaper/${paper?._id}`}
                   className="flex no-underline items-center text-blue-500 hover:text-blue-700 text-xs font-semibold"
                 >
                   <FaEye className="mr-1" />
                   View
                 </Link>
                 <Link
-                  to={`view/${paper?._id}`}
+                  to={`updateSessional/${paper?._id}`}
                   className="flex no-underline items-center text-green-500 hover:text-green-700 text-xs font-semibold"
                 >
                   <FaEdit className="mr-1" />
                   Edit
                 </Link>
+                <button
+                  onClick={() => {
+                    const link = document.createElement("a");
+                    link.href = `${SERVER}/${paper?.sessionalPdf}`;
+                    link.download = paper?.title || "document.pdf";
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                  }}
+                  href={paper?.sessionalPdf}
+                  download
+                  className="flex no-underline cursor-pointer items-center text-blue-500 hover:text-blue-700 text-xs font-semibold"
+                >
+                  <FaDownload className="mr-1" />
+                  Download PDF
+                </button>
                 <button
                   onClick={() => handleDelete(paper?._id)}
                   className="flex items-center text-red-500 hover:text-red-700 text-xs font-semibold"

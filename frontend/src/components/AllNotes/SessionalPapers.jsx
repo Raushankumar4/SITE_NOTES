@@ -10,7 +10,7 @@ const SessionalPapers = () => {
   const { id } = useParams();
   useGetSessionalPaper(id);
   const { sessionalPapers } = useSelector((state) => state.user);
-  const sessionalPaper = sessionalPapers?.filter((paper) => paper?.note === id);
+  const sessionalPaper = sessionalPapers?.filter((paper) => paper?._id === id);
   console.log(sessionalPaper);
 
   const nav = useNavigate();
@@ -23,20 +23,18 @@ const SessionalPapers = () => {
     }
   };
 
-  const handleEdit = (paperId) => {
-    nav(`/semesterPaper/updateSessional/${paperId}`);
-  };
-
   return (
     <div className="p-6 bg-gray-100 min-h-screen">
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-2xl font-bold">Sessional Papers</h1>
-        <Link
-          to={`createSessional`}
-          className="flex items-center bg-blue-500 text-white px-4 py-2 rounded-md shadow hover:bg-blue-600 transition duration-200"
+
+        <button
+          onClick={() => nav(-1)}
+          className="flex items-center bg-blue-500 text-white px-4 py-2 rounded-lg"
         >
-          <FaPlus className="mr-2" /> Add Paper
-        </Link>
+          <FaPlus className="mr-2" />
+          Add Sessional
+        </button>
       </div>
       {sessionalPaper?.length > 0 ? (
         sessionalPaper?.map((paper) => (
@@ -44,12 +42,20 @@ const SessionalPapers = () => {
             className="border rounded-lg shadow-md p-4 mb-4 bg-white"
             key={paper?._id}
           >
-            <h2 className="text-lg font-bold mb-2">{paper?.title}</h2>
-            <p className="text-gray-700 mb-2">{paper?.description}</p>
+            <h2 className="text-3xl font-bold mb-2">
+              Sessional Name:{" "}
+              <span className="text-blue-500 font-normal text-md">
+                {paper?.title}
+              </span>
+            </h2>
+            <p className="text-gray-700 text-xl mb-2">
+              Sessional Description:{" "}
+              <span className="text-md">{paper?.description}</span>
+            </p>
             <p className="text-gray-600">Branch: {paper?.branch}</p>
             <p className="text-gray-600">Year: {paper?.selectYear}</p>
             <p className="text-gray-600">
-              Created At: {new Date(paper?.createdAt).toLocaleDateString()}
+              Uploaded on: {new Date(paper?.createdAt).toLocaleDateString()}
             </p>
             <iframe
               src={`${SERVER}/${paper?.sessionalPdf}`}
@@ -57,12 +63,6 @@ const SessionalPapers = () => {
               title={paper?.title}
             ></iframe>
             <div className="flex space-x-4">
-              <button
-                onClick={() => handleEdit(paper?._id)}
-                className="flex items-center text-yellow-500 hover:text-yellow-700 transition duration-200"
-              >
-                <FaEdit className="mr-1" /> Edit
-              </button>
               <button
                 onClick={() => handleDelete(paper?._id)}
                 className="flex items-center text-red-500 hover:text-red-700 transition duration-200"

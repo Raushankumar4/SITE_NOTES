@@ -28,13 +28,13 @@ export const useRegisterUser = () => {
 
   const validateForm = () => {
     const newErrors = {};
-    if (!userInput.fullName) newErrors.fulName = "required";
-    if (!userInput.email) newErrors.email = "required";
-    if (!userInput.password) newErrors.password = "required";
-    if (!userInput.role) newErrors.role = "required";
-    if (!userInput.selectBranch) newErrors.selectBranch = "required";
+    if (!userInput.fullName) newErrors.fullName = "fullName is required";
+    if (!userInput.email) newErrors.email = "email is required";
+    if (!userInput.password) newErrors.password = "password is required";
+    if (!userInput.role) newErrors.role = "role is required";
+    if (!userInput.selectBranch) newErrors.selectBranch = "branch is required";
     if (!userInput.phoneNumber) {
-      newErrors.phoneNumber = "required";
+      newErrors.phoneNumber = "phone number is required";
     } else if (!/^\d+$/.test(userInput.phoneNumber)) {
       newErrors.phoneNumber = "invalid phone number";
     }

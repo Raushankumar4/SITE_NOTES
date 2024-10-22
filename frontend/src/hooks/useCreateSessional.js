@@ -31,7 +31,7 @@ export const useCreateSessionalPaper = (semseterId) => {
     setError(newErrors);
     return Object.keys(newErrors).length === 0 ? null : newErrors;
   };
-  const hanldeOnChange = (e) => {
+  const handleOnChange = (e) => {
     const { name, value, files } = e.target;
     if (name === "sessionalPdf") {
       const file = files[0];
@@ -77,7 +77,6 @@ export const useCreateSessionalPaper = (semseterId) => {
       dispatch(setRefresh(true));
       toast.success(data?.message);
       navigate(-1);
-      console.log(data);
     } catch (error) {
       toast.error(error?.response?.data?.message || error?.message);
     } finally {
@@ -86,11 +85,12 @@ export const useCreateSessionalPaper = (semseterId) => {
   };
   return {
     handleCreateSessional,
-    hanldeOnChange,
+    handleOnChange,
     userInput,
     filePreview,
     setFilePreview,
     error,
     loading,
+    setUserInput,
   };
 };

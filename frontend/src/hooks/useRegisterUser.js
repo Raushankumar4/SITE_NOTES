@@ -12,6 +12,7 @@ export const useRegisterUser = () => {
     role: "",
     selectBranch: "",
     phoneNumber: "",
+    profile: null,
   });
 
   const [error, setError] = useState({});
@@ -19,11 +20,19 @@ export const useRegisterUser = () => {
   const navigate = useNavigate();
 
   const handleOnChange = (e) => {
-    const { name, value } = e.target;
-    setUserInput((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    const { name, value, files } = e.target;
+    if (name === "profile") {
+      const file = files[0];
+      setUserInput((prev) => ({
+        ...prev,
+        [name]: file,
+      }));
+    } else {
+      setUserInput((prev) => ({
+        ...prev,
+        [name]: value,
+      }));
+    }
   };
 
   const validateForm = () => {

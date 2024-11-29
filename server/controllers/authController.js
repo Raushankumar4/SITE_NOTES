@@ -33,6 +33,9 @@ export const register = ErrorHandler(async (req, res) => {
   }
 
   const hashedPassword = await bcrypt.hash(password, 10);
+
+  let localFilePath = req.file ? req.file.path : null;
+
   const newUser = await User.create({
     fullName,
     email,
@@ -40,7 +43,7 @@ export const register = ErrorHandler(async (req, res) => {
     role,
     selectBranch,
     phoneNumber,
-    profile: req.file.path.replace("\\", "/") || null,
+    profile: localFilePath,
   });
   if (!newUser) {
     return res.status(500).json({ message: "Error creating user" });

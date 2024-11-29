@@ -23,6 +23,7 @@ import SessionalPapers from "./components/AllNotes/SessionalPapers.jsx";
 import UpdateSessional from "./components/Teacher/Sessional/UpdateSessional.jsx";
 import Card from "./components/AllNotes/Card.jsx";
 import SessionalCard from "./components/AllNotes/SessionalCard.jsx";
+import ChangePassword from "./components/Auth/ChangePassword.jsx";
 
 const router = createBrowserRouter([
   {
@@ -62,6 +63,10 @@ const router = createBrowserRouter([
       {
         path: "semesterPaper/view/:id/updateSessional/:id",
         element: <UpdateSessional />,
+      },
+      {
+        path: "change-password",
+        element: <ChangePassword />,
       },
     ],
   },

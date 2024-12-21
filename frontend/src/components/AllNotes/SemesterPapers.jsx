@@ -6,12 +6,14 @@ import { useDeleteSemester } from "../../hooks/useDeleteSemesterPaper";
 import { Link, useParams } from "react-router-dom";
 import { FaTrash, FaPlusCircle, FaFilePdf, FaDownload } from "react-icons/fa";
 import SessionalCard from "./SessionalCard";
+import { useGetProfile } from "../../hooks/useGetProfile";
 
 const SemesterPapers = () => {
   const { id } = useParams();
   useGetAllSemesterPapers(id);
-  const { semesterPapers } = useSelector((state) => state.user);
+  const { semesterPapers ,user} = useSelector((state) => state.user);
   const paper = semesterPapers.find((paper) => paper?._id === id);
+  useGetProfile()
 
   const { deletePaper } = useDeleteSemester();
 
@@ -59,20 +61,28 @@ const SemesterPapers = () => {
       </div>
 
       <div className="flex flex-col md:flex-row justify-between items-start mb-4">
-        <button
-          onClick={() => handleDeletePaper(paper?._id)}
-          className="flex items-center text-red-500 hover:text-red-700"
-        >
-          <FaTrash className="mr-2" />
-          Delete Paper
-        </button>
-        <Link
-          className="text-blue-500 hover:underline no-underline block"
-          to={`/updatePaper/${paper?._id}`}
-        >
-          <FaFilePdf className="inline mr-2" />
-          Update Notes
-        </Link>
+       {
+         user?._id === paper?.userId && (
+           <button
+             onClick={() => handleDeletePaper(paper?._id)}
+             className="flex items-center text-red-500 hover:text-red-700"
+           >
+             <FaTrash className="mr-2" />
+             Delete Paper
+           </button>
+         )
+       }
+        {
+          user?._id === paper?.userId && (
+            <Link
+              className="flex items-center text-white px-4 py-2 rounded-md shadow hover:bg-blue-600 transition duration-200 ease-in-out no-underline"
+              to={`edit/${paper?._id}`}
+            >
+              <FaFilePdf className="mr-2" />
+              Edit Paper
+            </Link>
+          )
+        }
         <button
           onClick={handleDownload}
           className="flex items-center text-green-500 hover:text-green-700"

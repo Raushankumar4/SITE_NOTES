@@ -5,6 +5,7 @@ import { useGetAllSemesterPapers } from "../../hooks/useGetAllSemesterPapers";
 import { Link } from "react-router-dom";
 import SelectOption from "../InputField/SelectOption";
 import { useDeleteSemester } from "../../hooks/useDeleteSemesterPaper";
+import { useGetProfile } from "../../hooks/useGetProfile";
 
 const Card = () => {
   const options = [
@@ -27,8 +28,10 @@ const Card = () => {
     { value: "IV", label: "IV" },
   ];
 
-  const { semesterPapers } = useSelector((state) => state.user);
+  const { semesterPapers, user } = useSelector((state) => state.user);
+  useGetProfile();
   useGetAllSemesterPapers();
+  console.log("User", user);
 
   const [selectedBranch, setSelectedBranch] = useState("");
   const [selectedYear, setSelectedYear] = useState("");
@@ -107,20 +110,24 @@ const Card = () => {
                   <FaEye className="mr-1" />
                   View
                 </Link>
-                <Link
-                  to={`updatePaper/${paper?._id}`}
-                  className="flex no-underline items-center text-green-500 hover:text-green-700 text-xs font-semibold"
-                >
-                  <FaEdit className="mr-1" />
-                  Edit
-                </Link>
-                <button
-                  onClick={() => hanldeDeletePaper(paper?._id)}
-                  className="flex items-center text-red-500 hover:text-red-700 text-xs font-semibold"
-                >
-                  <FaTrash className="mr-1" />
-                  Delete
-                </button>
+                {user?._id === paper?.userId && (
+                  <Link
+                    to={`edit/${paper?._id}`}
+                    className="flex no-underline items-center text-blue-500 hover:text-blue-700 text-xs font-semibold"
+                  >
+                    <FaEdit className="mr-1" />
+                    Edit
+                  </Link>
+                )}
+                {user?._id === paper?.userId && (
+                  <button
+                    onClick={() => hanldeDeletePaper(paper?._id)}
+                    className="flex no-underline items-center text-red-500 hover:text-red-700 text-xs font-semibold"
+                  >
+                    <FaTrash className="mr-1" />
+                    Delete
+                  </button>
+                )}
               </div>
             </li>
           ))}

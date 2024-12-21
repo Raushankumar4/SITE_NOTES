@@ -25,10 +25,12 @@ import Card from "./components/AllNotes/Card.jsx";
 import SessionalCard from "./components/AllNotes/SessionalCard.jsx";
 import ChangePassword from "./components/Auth/ChangePassword.jsx";
 
+
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    errorElement: <h1>404 Not Found</h1>,
     children: [
       { index: true, element: <Home /> },
       { path: "signUp", element: <SignUp /> },

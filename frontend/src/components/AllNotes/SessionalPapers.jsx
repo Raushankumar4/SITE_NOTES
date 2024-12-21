@@ -5,13 +5,15 @@ import { useSelector } from "react-redux";
 import { SERVER } from "../../constant";
 import { FaTrash, FaPlus, FaEdit } from "react-icons/fa";
 import { useDeleteSessional } from "../../hooks/useDeleteSessional";
+import { useGetProfile } from "../../hooks/useGetProfile";
 
 const SessionalPapers = () => {
   const { id } = useParams();
   useGetSessionalPaper(id);
-  const { sessionalPapers } = useSelector((state) => state.user);
+  const { sessionalPapers, user } = useSelector((state) => state.user);
   const sessionalPaper = sessionalPapers?.filter((paper) => paper?._id === id);
   console.log(sessionalPaper);
+  useGetProfile();
 
   const nav = useNavigate();
 
@@ -63,12 +65,15 @@ const SessionalPapers = () => {
               title={paper?.title}
             ></iframe>
             <div className="flex space-x-4">
-              <button
-                onClick={() => handleDelete(paper?._id)}
-                className="flex items-center text-red-500 hover:text-red-700 transition duration-200"
-              >
-                <FaTrash className="mr-1" /> Delete
-              </button>
+              {user?._id === paper?.userId && (
+                <button
+                  onClick={() => handleDelete(paper?._id)}
+                  className="flex items-center bg-red-500 text-white px-4 py-2 rounded-lg"
+                >
+                  <FaTrash className="mr-2" />
+                  Delete
+                </button>
+              )}
             </div>
           </div>
         ))

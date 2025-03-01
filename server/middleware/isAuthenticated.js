@@ -1,27 +1,22 @@
 import jwt from "jsonwebtoken";
 import { User } from "../models/userModel.js";
 
-export const isAuthenticated = (req, res, next) => {
-  const { authorization } = req.headers;
-  if (!authorization || !authorization.startsWith("Bearer ")) {
-    return res.status(401).json({ message: " Unauthorized" });
-  }
-  const token = req.headers.authorization.split(" ")[1];
+export const isAuthenticated = async (req, res, next) => {
   try {
+    const token = req.cookies.token || req.headers.authorization?.split(" ")[1];
+
+    if (!token) {
+      return res
+        .status(401)
+        .json({ message: "Access denied. No token provided." });
+    }
+
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = decoded;
+    req.user = decoded._id;
+    console.log("User");
+
     next();
-  } catch (err) {
-    return res.status(401).json({ message: "Unauthorized" });
+  } catch (error) {
+    res.status(401).json({ message: "Invalid or expired token" });
   }
-};
-
-// is Admin
-
-export const isAdmin = async (req, res, next) => {
-  const user = await User.findById(req.user._id);
-  if (user.role !== "teacher") {
-    return res.status(403).json({ message: "Only teachers can access this" });
-  }
-  next();
 };

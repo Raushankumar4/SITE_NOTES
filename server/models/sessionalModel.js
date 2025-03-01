@@ -8,13 +8,38 @@ const sessionalSchema = new Schema(
     branch: {
       type: String,
       required: true,
-      enum: ["CSE", "IT", "ECE", "MECH", "CHEM", "CIVIL", "EEE", "FT"],
+      enum: [
+        "CSE",
+        "IT",
+        "ECE",
+        "MECH",
+        "CHEM",
+        "CIVIL",
+        "EEE",
+        "FT",
+        "EIE",
+        "BIOTECH",
+        "OTHERS",
+      ],
     },
     selectYear: {
       type: String,
       required: true,
-      enum: ["I", "II", "III", "IV"],
+      enum: ["1st", "2nd", "3rd", "4th"],
     },
+    status: {
+      type: String,
+      enum: ["pending", "approved", "rejected", "reported"],
+      default: "pending",
+    },
+    rejectionReason: { type: String, default: null },
+    reportReason: { type: String, default: null },
+    reportedBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      default: null,
+    },
+
     note: {
       type: Schema.Types.ObjectId,
       ref: "Note",

@@ -35,6 +35,12 @@ const userSchema = new mongoose.Schema(
       required: [true, "Please provide a branch"],
       enum: ["CSE", "IT", "ECE", "MECH", "CHEM", "CIVIL", "EEE", "FT"],
     },
+    selectYear: {
+      type: String,
+      required: [true, "Please provide a branch"],
+      enum: ["1st", "2nd", "3rd", "4th"],
+      default: "1st",
+    },
     role: {
       type: String,
       enum: ["student", "teacher"],
@@ -44,6 +50,14 @@ const userSchema = new mongoose.Schema(
       type: String,
     },
     resetPasswordExpire: {
+      type: Date,
+    },
+    isVerified: {
+      type: Boolean,
+      default: false,
+    },
+    verificationCode: String,
+    otpExpiresAt: {
       type: Date,
     },
   },

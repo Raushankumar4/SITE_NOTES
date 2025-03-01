@@ -25,12 +25,25 @@ const notesSchema = new Schema(
     selectYear: {
       type: String,
       required: true,
-      enum: ["I", "II", "III", "IV"],
+      enum: ["1st", "2nd", "3rd", "4th"],
     },
     userId: {
       type: Schema.Types.ObjectId,
       ref: "User",
     },
+    status: {
+      type: String,
+      enum: ["pending", "approved", "rejected", "reported"],
+      default: "pending",
+    },
+    rejectionReason: { type: String, default: null },
+    reportReason: { type: String, default: null },
+    reportedBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      default: null,
+    },
+
     sessionalPaper: [
       {
         type: Schema.Types.ObjectId,
@@ -38,6 +51,7 @@ const notesSchema = new Schema(
       },
     ],
   },
+
   { timestamps: true }
 );
 

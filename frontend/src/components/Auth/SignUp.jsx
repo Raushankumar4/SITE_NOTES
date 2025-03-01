@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useRegisterUser } from "../../hooks/useRegisterUser";
 import { InputArea } from "../InputField/InputArea";
 import SelectOption from "../InputField/SelectOption";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import {
   FaUser,
@@ -16,6 +16,8 @@ import {
 const SignUp = () => {
   const { handleOnChange, userInput, handleOnRegister, error, loading } =
     useRegisterUser();
+
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
@@ -38,15 +40,16 @@ const SignUp = () => {
   ];
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-500 to-indigo-600 p-6">
-      <div className="bg-white/20 backdrop-blur-lg shadow-2xl rounded-2xl overflow-hidden flex flex-col md:flex-row w-full max-w-5xl">
+    <div className="flex items-center justify-center min-h-screen w-screen bg-gradient-to-r from-blue-500 to-indigo-600 p-4">
+      <div className="bg-white/20 backdrop-blur-lg shadow-2xl rounded-2xl overflow-hidden flex flex-col md:flex-row w-full max-w-4xl">
         {/* Left Side - Form */}
-        <div className="w-full md:w-1/2 p-8 md:p-12">
-          <h2 className="text-3xl font-extrabold text-white text-center mb-6">
+        <div className="w-full md:w-1/2 p-6 md:p-8">
+          <h2 className="text-2xl md:text-3xl font-extrabold text-white text-center mb-4 md:mb-6">
             Create an Account
           </h2>
-          <form onSubmit={handleOnRegister} className="space-y-5">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <form onSubmit={handleOnRegister} className="space-y-4 md:space-y-5">
+            {/* Full Name & Email */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <InputArea
                 name="fullName"
                 type="text"
@@ -67,7 +70,8 @@ const SignUp = () => {
               />
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {/* Password & Phone Number */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="relative">
                 <InputArea
                   name="password"
@@ -82,7 +86,7 @@ const SignUp = () => {
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute inset-y-11 right-3 text-gray-500 hover:text-blue-300"
+                  className="absolute inset-y-10 right-3 text-gray-500 hover:text-blue-300"
                 >
                   {showPassword ? <FaEyeSlash /> : <FaEye />}
                 </button>
@@ -98,7 +102,8 @@ const SignUp = () => {
               />
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {/* Select Branch & Role */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <SelectOption
                 id="selectBranch"
                 name="selectBranch"
@@ -119,20 +124,25 @@ const SignUp = () => {
               />
             </div>
 
+            {/* Submit Button */}
             <button
               type="submit"
               className="w-full bg-gradient-to-r from-blue-500 to-indigo-500 text-white font-bold py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
             >
-              Sign Up
+              {loading ? "Signing Up..." : "Sign Up"}
             </button>
           </form>
 
-          <div className="mt-6 text-center">
-            <p className="text-white">
+          {/* Login Redirect */}
+          <div className="mt-4 md:mt-6 text-center">
+            <p className="text-white text-sm md:text-base">
               Already have an account?{" "}
-              <Link to="signIn" className="text-blue-300 font-semibold hover:underline">
+              <button
+                onClick={() => navigate(-1)}
+                className="text-blue-300 font-semibold hover:underline"
+              >
                 Log in
-              </Link>
+              </button>
             </p>
           </div>
         </div>
@@ -141,11 +151,11 @@ const SignUp = () => {
         <div className="hidden md:flex md:w-1/2 relative">
           <img
             src="signup.svg"
-            alt="SignUp"
+            alt="Sign Up"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-            <h2 className="text-white text-3xl font-semibold text-center p-6">
+            <h2 className="text-white text-lg md:text-2xl font-semibold text-center px-6">
               Welcome to Our Community!
             </h2>
           </div>

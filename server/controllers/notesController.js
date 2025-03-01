@@ -378,3 +378,35 @@ export const deleteSessionalPaper = ErrorHandler(async (req, res) => {
   }
   return res.status(200).json({ message: "Deleted" });
 });
+
+// dashboards
+
+export const getDashboardStats = ErrorHandler(async (req, res) => {
+  try {
+    const totalTeachers = await User.countDocuments({ role: "teacher" });
+    const totalStudents = await User.countDocuments({ role: "student" });
+
+    const totalNotes = await Note.countDocuments();
+    const totalSessionalNotes = await Sessional.countDocuments();
+
+    const totalReports = await Note.countDocuments({ status: "reported" });
+    const totalRejects = await Note.countDocuments({ status: "rejected" });
+
+    const totalPendings = await Note.countDocuments({ status: "pending" });
+    const totalApproved = await Note.countDocuments({ status: "approved" });
+
+    return res.status(200).json({
+      message: "Dashboard stats fetched successfully",
+      totalTeachers,
+      totalStudents,
+      totalNotes,
+      totalSessionalNotes,
+      totalReports,
+      totalRejects,
+      totalApproved,
+      totalPendings,
+    });
+  } catch (error) {
+    return res.status(500).json({ message: "Error fetching dashboard stats" });
+  }
+});

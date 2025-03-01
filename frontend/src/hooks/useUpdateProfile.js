@@ -16,11 +16,9 @@ export const useUpdateProfile = () => {
     fullName: user?.fullName || "",
     email: user?.email || "",
     phoneNumber: user?.phoneNumber || "",
-    profile: null,
+    profile: user?.profile || null,
   });
-  const [profilePreview, setProfilePreview] = useState(
-    `${SERVER}/${user?.profile}` || null
-  );
+  const [profilePreview, setProfilePreview] = useState(user?.profile || null);
 
   const handleOnChange = (e) => {
     const { name, value, files } = e.target;

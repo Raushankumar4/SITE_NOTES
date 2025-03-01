@@ -1,8 +1,9 @@
 import { ErrorHandler } from "../middleware/errorHandler.js";
 import { User } from "../models/userModel.js";
+import uploadOnCloudnary from "../utils/cloudinary.js";
 
 export const getProfile = ErrorHandler(async (req, res) => {
-  const user = await User.findById(req.user._id).select("-password");
+  const user = await User.findById(req.user).select("-password");
   if (!user) {
     return res.status(404).json({ message: "User not found" });
   }
@@ -13,14 +14,28 @@ export const getProfile = ErrorHandler(async (req, res) => {
 
 export const updateProfile = ErrorHandler(async (req, res) => {
   const { fullName, email, phoneNumber } = req.body;
-  if (!fullName || !email || !phoneNumber) {
-    return res.status(400).json({ message: "Missing required fields" });
+  let profileImageUrl;
+  if (req.file) {
+    const profileImageLocalPath = req.file.path;
+    try {
+      const uploadProfile = await uploadOnCloudnary(profileImageLocalPath);
+      if (uploadProfile && uploadProfile.url) {
+        profileImageUrl = uploadProfile.url;
+      } else {
+        return res
+          .status(500)
+          .json({ message: "Error uploading file to Cloudinary" });
+      }
+    } catch (error) {
+      console.log("Error uploading file to Cloudinary:", error.message);
+    }
   }
-  const user = await User.findByIdAndUpdate(req.user._id, {
+
+  const user = await User.findByIdAndUpdate(req.user, {
     fullName,
     email,
     phoneNumber,
-    profile: req.file.path.replace("\\", "/") || null,
+    profile: profileImageUrl || null,
   })
     .select("-password")
     .exec();

@@ -3,10 +3,10 @@ import {
   changePassword,
   forgotPassword,
   getUserActivity,
-  loginAsAdmin,
   loginUser,
   logOutUser,
   register,
+  resendOTP,
   resetPassword,
   verifyOtp,
 } from "../controllers/authController.js";
@@ -18,9 +18,7 @@ const router = Router();
 // register user
 router.route("/register").post(upload.single("profile"), register);
 // login user
-router.route("/students/login").post(loginUser);
-// login as admin
-router.route("/teachers/login").post(loginAsAdmin);
+router.route("/login").post(loginUser);
 // logout
 router.route("/logout").get(isAuthenticated, logOutUser);
 // change password
@@ -33,5 +31,6 @@ router.route("/forgotPassword").post(forgotPassword);
 // reset password
 router.route("/resetPassword").post(resetPassword);
 router.route("/verify-email").post(verifyOtp);
+router.route("/resend-otp").post(resendOTP);
 
 export default router;

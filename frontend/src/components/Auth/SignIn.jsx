@@ -23,7 +23,7 @@ const SignInPage = () => {
   return (
     <>
       {!isAuthenticated && (
-        <div className="flex items-center justify-center md:h-[88vh] h-[91.4vh] mx-4">
+        <div className="flex items-center justify-center min-h-screen w-screen p-4">
           <div className="backdrop-blur-sm backdrop-filter rounded-3xl shadow-lg p-8    w-full max-w-4xl flex flex-col md:flex-row">
             <div className="md:w-1/2 hidden md:block">
               <img
@@ -34,7 +34,7 @@ const SignInPage = () => {
             </div>
             <div className="w-full  p-4 md:mt-10 md:w-1/2">
               <h2 className="text-2xl font-bold mb-6 text-center">
-                {show ? "Student Login" : "Teacher Login"}
+                Login
               </h2>
 
               <form onSubmit={handleOnLogin}>
@@ -103,25 +103,6 @@ const SignInPage = () => {
                     Create an account
                   </Link>
                 </p>
-                {show ? (
-                  <p className="mt-2 text-gray-600 text-sm">
-                    <Link
-                      to="/teacherLogin"
-                      className="text-blue-500 text-md no-underline hover:underline"
-                    >
-                      Login as Teacher
-                    </Link>
-                  </p>
-                ) : (
-                  <p className="mt-2 text-gray-600 text-sm">
-                    <Link
-                      to="/signIn"
-                      className="text-blue-500 hover:underline"
-                    >
-                      Login as Student
-                    </Link>
-                  </p>
-                )}
               </div>
             </div>
           </div>

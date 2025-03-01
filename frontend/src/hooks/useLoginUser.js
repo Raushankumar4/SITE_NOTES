@@ -3,7 +3,7 @@ import axios from "axios";
 import { AUTH } from "../constant";
 import { useDispatch } from "react-redux";
 import { login } from "../Redux/store/slice/authSlice";
-import {  useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 
 export const useLoginUser = () => {
@@ -17,11 +17,6 @@ export const useLoginUser = () => {
   const navigate = useNavigate();
 
   const location = useLocation();
-
-  const loginRoute =
-    location.pathname === "/signIn"
-      ? `${AUTH}/students/login`
-      : `${AUTH}/teachers/login`;
 
   const handleOnChange = (e) => {
     const { name, value } = e.target;
@@ -44,7 +39,7 @@ export const useLoginUser = () => {
     if (validateError) return;
     setLoading(true);
     try {
-      const { data } = await axios.post(`${loginRoute}`, userInput);
+      const { data } = await axios.post(`${AUTH}/login`, userInput);
       dispatch(login({ token: data?.token }));
       toast.success(data?.message);
       navigate("/");

@@ -1,6 +1,5 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { SERVER } from "../../constant";
 import { Link } from "react-router-dom";
 import { useGetProfile } from "../../hooks/useGetProfile";
 
@@ -13,7 +12,7 @@ const Profile = () => {
       <div className="flex flex-col items-center">
         <img
           className="w-32 h-32 rounded-full mb-4 border-4 border-[#42d240] dark:border-blue-500"
-          src={`${SERVER}/${user?.profile}`}
+          src={`${user?.profile}`}
           alt="User Profile"
         />
         <h2 className="dark:text-blue-600 text-[#070809] text-3xl font-semibold capitalize mb-2">

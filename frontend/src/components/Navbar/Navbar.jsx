@@ -68,19 +68,16 @@ const Navbar = () => {
       {/* Hamburger Menu */}
       <div className="md:hidden" onClick={toggleMenu}>
         <div
-          className={`h-1 w-6 dark:bg-[#FFFFFF] bg-[#000000] mb-1 transition-all ${
-            isOpen ? "rotate-45 translate-y-1.5" : ""
-          }`}
+          className={`h-1 w-6 dark:bg-[#FFFFFF] bg-[#000000] mb-1 transition-all ${isOpen ? "rotate-45 translate-y-1.5" : ""
+            }`}
         />
         <div
-          className={`h-1 w-6 dark:bg-[#FFFFFF] bg-[#000000] mb-1 transition-all ${
-            isOpen ? "opacity-0" : ""
-          }`}
+          className={`h-1 w-6 dark:bg-[#FFFFFF] bg-[#000000] mb-1 transition-all ${isOpen ? "opacity-0" : ""
+            }`}
         />
         <div
-          className={`h-1 w-6 dark:bg-[#FFFFFF] bg-[#000000] transition-all ${
-            isOpen ? "-rotate-45 -translate-y-1.5" : ""
-          }`}
+          className={`h-1 w-6 dark:bg-[#FFFFFF] bg-[#000000] transition-all ${isOpen ? "-rotate-45 -translate-y-1.5" : ""
+            }`}
         />
       </div>
 
@@ -141,12 +138,14 @@ const Navbar = () => {
           </>
         ) : (
           <>
-            <Link
-              to="/"
-              className="text-[#030303] no-underline text-lg  px-4 py-[10px] rounded-full dark:text-[#FFFFFF] dark:bg-[#363636]"
-            >
-              Home
-            </Link>
+            {
+              !isAuthenticated && <Link
+                to="/"
+                className="text-[#030303] no-underline text-lg  px-4 py-[10px] rounded-full dark:text-[#FFFFFF] dark:bg-[#363636]"
+              >
+                Home
+              </Link>
+            }
             <Link
               to="/profile"
               className="text-[#030303] no-underline text-lg  px-4 py-[10px] rounded-full dark:text-[#FFFFFF] dark:bg-[#363636]"
@@ -181,9 +180,8 @@ const Navbar = () => {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: isOpen ? 1 : 0, y: isOpen ? 0 : -20 }}
         transition={{ duration: 0.2 }}
-        className={`absolute top-20 dark:bg-[#363636] flex flex-col space-x-2 left-0 w-full bg-[#E5E5E5] p-4 space-y-2 md:hidden ${
-          isOpen ? "block" : "hidden"
-        }`}
+        className={`absolute top-20 dark:bg-[#363636] flex flex-col space-x-2 left-0 w-full bg-[#E5E5E5] p-4 space-y-2 md:hidden ${isOpen ? "block" : "hidden"
+          }`}
       >
         {!isAuthenticated ? (
           <>
@@ -215,17 +213,19 @@ const Navbar = () => {
         ) : (
           <>
             <ul className="space-y-4">
-              <li className="text-[#030303] no-underline text-lg    dark:text-[#FFFFFF] dark:bg-[#363636]">
-                <button
-                  onClick={() => {
-                    navigate("/");
-                    toggleMenu();
-                  }}
-                  className="bg-[#000000] no-underline dark:text-[#FFFFFF] dark:bg-[#0F3BFE]  text-[#ffff] hover:bg-blue-600 px-4 py-[10px] rounded-full"
-                >
-                  Home
-                </button>
-              </li>
+              {
+                !isAuthenticated && <li className="text-[#030303] no-underline text-lg    dark:text-[#FFFFFF] dark:bg-[#363636]">
+                  <button
+                    onClick={() => {
+                      navigate("/");
+                      toggleMenu();
+                    }}
+                    className="bg-[#000000] no-underline dark:text-[#FFFFFF] dark:bg-[#0F3BFE]  text-[#ffff] hover:bg-blue-600 px-4 py-[10px] rounded-full"
+                  >
+                    Home
+                  </button>
+                </li>
+              }
               <li className="text-[#030303] no-underline text-lg    dark:text-[#FFFFFF] dark:bg-[#363636]">
                 <button
                   onClick={() => {

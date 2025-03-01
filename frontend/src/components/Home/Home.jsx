@@ -8,9 +8,14 @@ import Footer from "./Footer";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
+
 const Home = () => {
   const [showHeader, setShowHeader] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+
+
+
+
 
   useEffect(() => {
     AOS.init({

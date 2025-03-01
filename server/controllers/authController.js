@@ -146,30 +146,6 @@ export const loginUser = ErrorHandler(async (req, res) => {
   });
 });
 
-// admin login
-
-export const loginAsAdmin = ErrorHandler(async (req, res) => {
-  const { email, password } = req.body;
-  if (!email || !password) {
-    return res.status(400).json({ message: "Missing required fields" });
-  }
-  const user = await User.findOne({ email });
-  if (!user) {
-    return res.status(404).json({ message: "User not found" });
-  }
-
-  const comparePasseord = await bcrypt.compare(password, user.password);
-  if (!comparePasseord) {
-    return res.status(401).json({ message: "Invalid credentials" });
-  }
-  const token = GenerateToken(user);
-  setTokenCookie(res, token);
-  return res.status(200).json({
-    message: "Login successful",
-    token,
-  });
-});
-
 // logout user
 export const logOutUser = ErrorHandler(async (req, res) => {
   const { userId } = req.body;
@@ -211,7 +187,7 @@ export const getUserActivity = ErrorHandler(async (req, res) => {
         logOutTime: 1,
         ipAddress: 1,
         deviceInfo: 1,
-        userName: "$userDetails.fullName", 
+        userName: "$userDetails.fullName",
         userEmail: "$userDetails.email",
         userBranch: "$userDetails.selectBranch",
         userselectYear: "$userDetails.selectYear",
@@ -303,4 +279,31 @@ export const resetPassword = ErrorHandler(async (req, res) => {
   user.resetPasswordExpire = null;
   await user.save();
   return res.status(200).json({ message: "Password changed successfully" });
+});
+
+// Resend Otp
+export const resendOTP = ErrorHandler(async (req, res) => {
+  const { email } = req.body;
+
+  // Check if the user exists
+  const user = await User.findOne({ email });
+  if (!user) {
+    return res.status(404).json({ message: "User not found" });
+  }
+
+  // Generate a new 6-digit OTP
+  const verificationCode = Math.floor(
+    100000 + Math.random() * 900000
+  ).toString();
+  const otpExpiresAt = Date.now() + 5 * 60 * 1000; // OTP expires in 5 minutes
+
+  // Update user with new OTP
+  user.verificationCode = verificationCode;
+  user.otpExpiresAt = otpExpiresAt;
+  await user.save();
+
+  // Send OTP email
+  await sendVerificationCode(user.email, verificationCode);
+
+  return res.status(200).json({ message: "OTP resent successfully." });
 });

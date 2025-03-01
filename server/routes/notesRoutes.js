@@ -15,7 +15,10 @@ import {
   updateSessionalPaper,
 } from "../controllers/notesController.js";
 import { upload } from "../middleware/multer.js";
-import { isAuthenticated } from "../middleware/isAuthenticated.js";
+import {
+  isAuthenticated,
+  isTeacherOrAdmin,
+} from "../middleware/isAuthenticated.js";
 
 const router = Router();
 
@@ -40,13 +43,25 @@ router.route("/getALlPapers").get(isAuthenticated, getAllNotes);
 router.route("/getALlSessional/:id").get(isAuthenticated, getAllSessionalNotes);
 router
   .route("/updateNote/:id")
-  .put(isAuthenticated, upload.single("notesPdf"), updateNotes);
-router.route("/deleteNote/:id").delete(isAuthenticated, deleteNote);
+  .put(
+    isAuthenticated,
+    isTeacherOrAdmin,
+    upload.single("notesPdf"),
+    updateNotes
+  );
+router
+  .route("/deleteNote/:id")
+  .delete(isAuthenticated, isTeacherOrAdmin, deleteNote);
 router
   .route("/updateSessional/:id")
-  .put(isAuthenticated, upload.single("sessionalPdf"), updateSessionalPaper);
+  .put(
+    isAuthenticated,
+    isTeacherOrAdmin,
+    upload.single("sessionalPdf"),
+    updateSessionalPaper
+  );
 router
   .route("/deleteSessional/:id")
-  .delete(isAuthenticated, deleteSessionalPaper);
+  .delete(isAuthenticated, isTeacherOrAdmin, deleteSessionalPaper);
 
 export default router;

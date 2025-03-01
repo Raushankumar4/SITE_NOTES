@@ -1,5 +1,4 @@
 import jwt from "jsonwebtoken";
-import { User } from "../models/userModel.js";
 
 export const isAuthenticated = async (req, res, next) => {
   try {
@@ -13,10 +12,18 @@ export const isAuthenticated = async (req, res, next) => {
 
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     req.user = decoded._id;
-    console.log("User");
 
     next();
   } catch (error) {
     res.status(401).json({ message: "Invalid or expired token" });
   }
+};
+
+export const isTeacherOrAdmin = (req, res, next) => {
+  if (req.user.role !== "teacher" && req.user.role !== "admin") {
+    return res
+      .status(403)
+      .json({ message: "Access denied! You are not authorized." });
+  }
+  next();
 };

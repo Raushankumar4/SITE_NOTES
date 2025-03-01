@@ -38,8 +38,8 @@ const SignUp = () => {
   ];
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-500 to-indigo-600 p-6">
-      <div className="bg-white/20 backdrop-blur-lg shadow-2xl rounded-2xl overflow-hidden flex flex-col md:flex-row w-full max-w-5xl">
+    <div className="min-h-screen flex items-center justify-center body p-6">
+      <div className="glass-card flex flex-col md:flex-row w-full max-w-5xl overflow-hidden">
         {/* Left Side - Form */}
         <div className="w-full md:w-1/2 p-8 md:p-12">
           <h2 className="text-3xl font-extrabold text-white text-center mb-6">
@@ -121,7 +121,7 @@ const SignUp = () => {
 
             <button
               type="submit"
-              className="w-full bg-gradient-to-r from-blue-500 to-indigo-500 text-white font-bold py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+              className="w-full create text-white font-bold py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
             >
               Sign Up
             </button>
@@ -130,7 +130,7 @@ const SignUp = () => {
           <div className="mt-6 text-center">
             <p className="text-white">
               Already have an account?{" "}
-              <Link to="signIn" className="text-blue-300 font-semibold hover:underline">
+              <Link to="signIn" className="text-blue font-semibold hover:underline">
                 Log in
               </Link>
             </p>
@@ -144,11 +144,6 @@ const SignUp = () => {
             alt="SignUp"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-            <h2 className="text-white text-3xl font-semibold text-center p-6">
-              Welcome to Our Community!
-            </h2>
-          </div>
         </div>
       </div>
     </div>

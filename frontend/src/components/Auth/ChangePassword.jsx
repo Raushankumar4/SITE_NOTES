@@ -2,20 +2,18 @@ import React, { useState } from "react";
 import { InputArea } from "../InputField/InputArea";
 import { useChangePassword } from "../../hooks/useChangePassword";
 import { useSelector } from "react-redux";
-import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai"; // Importing the eye icons
-
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai"; 
 const ChangePassword = () => {
   const userId = useSelector((state) => state.user.user?._id);
   console.log(userId);
 
-  const { userInput, handleOnChange, hanldeUpdatePassword } =
+  const { userInput, handleOnChange, hanldeUpdatePassword,error } =
     useChangePassword();
 
-  // State to toggle password visibility
+
   const [showCurrentPassword, setShowCurrentPassword] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
 
-  // Toggle password visibility function
   const toggleCurrentPassword = () => setShowCurrentPassword(!showCurrentPassword);
   const toggleNewPassword = () => setShowNewPassword(!showNewPassword);
 
@@ -33,6 +31,7 @@ const ChangePassword = () => {
               placeholder="Current password"
               label="Current Password"
               onChange={handleOnChange}
+              error={error.currentPassword}
               type={showCurrentPassword ? "text" : "password"} // Toggle password type
               className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
@@ -55,6 +54,7 @@ const ChangePassword = () => {
               value={userInput.newPassword}
               placeholder="New password"
               onChange={handleOnChange}
+              error={error.newPassword}
               type={showNewPassword ? "text" : "password"}
               className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />

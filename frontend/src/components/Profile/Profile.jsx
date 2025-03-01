@@ -12,7 +12,7 @@ const Profile = () => {
     <div className="max-w-lg dark:bg-[#363636] mx-auto my-10 p-5 bg-[#EFEFEF]  rounded-lg shadow-md border border-gray-300">
       <div className="flex flex-col items-center">
         <img
-          className="w-32 h-32 rounded-full mb-4 border-4 border-[#5b5d5e] dark:border-blue-500"
+          className="w-32 h-32 rounded-full mb-4 border-4 border-[#42d240] dark:border-blue-500"
           src={`${SERVER}/${user?.profile}`}
           alt="User Profile"
         />

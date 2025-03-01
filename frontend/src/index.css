@@ -9,32 +9,35 @@
   font-optical-sizing: auto;
 }
 .glass-card {
-  background: rgba(225, 225, 229, 0.308);
+  background: rgba(34, 118, 254, 0.2); /* Soft blue tint */
   backdrop-filter: blur(10px);
   border-radius: 15px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(34, 118, 254, 0.3);
 }
+
 .glass {
-  background: rgba(201, 201, 204, 0.411);
+  background: rgba(34, 118, 254, 0.25); /* Slightly different blue tint */
   backdrop-filter: blur(10px);
   border-radius: 15px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(34, 118, 254, 0.3);
 }
+
 .body {
-  background-image: linear-gradient(90deg, rgba(134, 134, 134, 0.05) 0%, rgba(134, 134, 134, 0.05) 21%,rgba(95, 95, 95, 0.05) 21%, rgba(95, 95, 95, 0.05) 100%),linear-gradient(45deg, rgba(16, 16, 16, 0.08) 0%, rgba(16, 16, 16, 0.08) 43%,rgba(254, 254, 254, 0.08) 43%, rgba(254, 254, 254, 0.08) 100%),linear-gradient(135deg, rgba(35, 35, 35, 0.08) 0%, rgba(35, 35, 35, 0.08) 36%,rgba(198, 198, 198, 0.08) 36%, rgba(198, 198, 198, 0.08) 100%),linear-gradient(135deg, rgba(75, 75, 75, 0.08) 0%, rgba(75, 75, 75, 0.08) 54%,rgba(123, 123, 123, 0.08) 54%, rgba(123, 123, 123, 0.08) 100%),linear-gradient(45deg, rgba(39, 39, 39, 0.03) 0%, rgba(39, 39, 39, 0.03) 86%,rgba(229, 229, 229, 0.03) 86%, rgba(229, 229, 229, 0.03) 100%),linear-gradient(135deg, rgba(74, 74, 74, 0.1) 0%, rgba(74, 74, 74, 0.1) 61%,rgba(70, 70, 70, 0.1) 61%, rgba(70, 70, 70, 0.1) 100%),linear-gradient(90deg, rgb(148, 148, 148),rgb(245, 245, 245));
-  /* backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  background-clip: border-box;
-  -webkit-background-clip: border-box;
-  background-origin: border-box;
-  background-attachment: fixed;
-  background-size: cover; */
+  background-image: 
+    linear-gradient(90deg, rgba(34, 118, 254, 0.05) 0%, rgba(34, 118, 254, 0.05) 21%, rgba(0, 64, 255, 0.05) 21%, rgba(0, 64, 255, 0.05) 100%),
+    linear-gradient(45deg, rgba(16, 16, 16, 0.08) 0%, rgba(16, 16, 16, 0.08) 43%, rgba(254, 254, 254, 0.08) 43%, rgba(254, 254, 254, 0.08) 100%),
+    linear-gradient(135deg, rgba(35, 35, 35, 0.08) 0%, rgba(35, 35, 35, 0.08) 36%, rgba(198, 198, 198, 0.08) 36%, rgba(198, 198, 198, 0.08) 100%),
+    linear-gradient(135deg, rgba(75, 75, 75, 0.08) 0%, rgba(75, 75, 75, 0.08) 54%, rgba(123, 123, 123, 0.08) 54%, rgba(123, 123, 123, 0.08) 100%),
+    linear-gradient(45deg, rgba(39, 39, 39, 0.03) 0%, rgba(39, 39, 39, 0.03) 86%, rgba(229, 229, 229, 0.03) 86%, rgba(229, 229, 229, 0.03) 100%),
+    linear-gradient(135deg, rgba(74, 74, 74, 0.1) 0%, rgba(74, 74, 74, 0.1) 61%, rgba(70, 70, 70, 0.1) 61%, rgba(70, 70, 70, 0.1) 100%),
+    linear-gradient(90deg, rgb(100, 149, 237), rgb(176, 196, 222)); /* Cornflower blue to light steel blue */
 }
 
 .create {
-  background-image: linear-gradient(90deg, rgb(59, 59, 59), rgb(125, 125, 125)),
+  background-image: 
+    linear-gradient(90deg, rgb(30, 30, 60), rgb(70, 70, 120)),
     linear-gradient(
       22.5deg,
       rgba(34, 118, 254, 0.308) 0%,
@@ -86,4 +89,5 @@
 html {
   scroll-behavior: smooth;
 }
+
 

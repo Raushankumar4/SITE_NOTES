@@ -24,12 +24,12 @@ const App = () => {
     document.body.className = theme;
   }, [theme]);
 
-  useEffect(() => {
-    // Redirect if not authenticated
-    if (!isAuthenticated) {
-      navigate("/");
-    }
-  }, [isAuthenticated, navigate]);
+  // useEffect(() => {
+  //   // Redirect if not authenticated
+  //   if (!isAuthenticated) {
+  //     navigate("/");
+  //   }
+  // }, [isAuthenticated, navigate]);
 
   return (
     <div className="body min-h-screen" data-aos="fade-down">

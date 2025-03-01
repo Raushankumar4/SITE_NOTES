@@ -163,7 +163,7 @@ const Navbar = () => {
               to="/create"
               className="text-[#030303] no-underline text-lg  px-4 py-[10px] rounded-full dark:text-[#FFFFFF] dark:bg-[#363636]"
             >
-              Create
+              Uplode Notes
             </Link>
 
             <button

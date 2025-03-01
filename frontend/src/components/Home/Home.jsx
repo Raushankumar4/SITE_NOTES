@@ -49,9 +49,8 @@ const Home = () => {
     <div className="max-w-5xl mt-4 mx-auto overflow-hidden">
       {/* Header Section */}
       <div
-        className={`transition-transform duration-300 ${
-          showHeader ? "translate-y-0" : "-translate-y-full"
-        }`}
+        className={`transition-transform duration-300 ${showHeader ? "translate-y-0" : "-translate-y-full"
+          }`}
       >
         {/* Welcome Section */}
         <div className="flex justify-center items-center box-border md:h-[87.8vh] h-[90vh]">
@@ -69,9 +68,9 @@ const Home = () => {
               <h1 className="text-4xl md:text-5xl font-bold text-gray-800 dark:text-blue-300">
                 Welcome to
               </h1>
-              <p className="text-2xl font-bold text-[#878484]">SITE NOTES</p>
+              <p className="text-2xl font-bold text-white">SITE NOTES</p>
               <p
-                className="w-full text-lg text-gray-700 dark:text-gray-300 leading-relaxed"
+                className="w-full text-lg text-black dark:text-gray-300 leading-relaxed"
                 data-aos="fade-right"
               >
                 Download all previous semester papers for every branch and year

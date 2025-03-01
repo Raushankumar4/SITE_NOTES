@@ -24,14 +24,16 @@ import UpdateSessional from "./components/Teacher/Sessional/UpdateSessional.jsx"
 import Card from "./components/AllNotes/Card.jsx";
 import SessionalCard from "./components/AllNotes/SessionalCard.jsx";
 import ChangePassword from "./components/Auth/ChangePassword.jsx";
+import AdminPanel from "./components/Dashboard/AdminPanel.jsx";
+
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    errorElement: <h1>404 Not Found</h1>,
     children: [
       { index: true, element: <Home /> },
-      { path: "signUp", element: <SignUp /> },
       { path: "signIn", element: <SignIn /> },
       { path: "teacherLogin", element: <SignIn /> },
       { path: "forgotPassword", element: <ForgotPassword /> },
@@ -68,8 +70,16 @@ const router = createBrowserRouter([
         path: "change-password",
         element: <ChangePassword />,
       },
+
     ],
+
   },
+  {
+    path: "/admin",
+    element: <AdminPanel />
+  },
+  { path: "signUp", element: <SignUp /> }
+
 ]);
 
 const persistor = persistStore(store);

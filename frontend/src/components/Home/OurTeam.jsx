@@ -4,8 +4,8 @@ import { FaFacebook, FaTwitter, FaLinkedin, FaInstagram } from "react-icons/fa";
 
 const teamMembers = [
   {
-    name: "Alice Johnson",
-    position: "Product Manager",
+    name: "Kamlesh Kumar",
+    position: "Front-End-Developer",
     description: "Expert in product development and strategy.",
     image: "https://via.placeholder.com/150",
     facebook: "https://www.facebook.com",
@@ -14,25 +14,15 @@ const teamMembers = [
     instagram: "https://www.instagram.com",
   },
   {
-    name: "Bob Smith",
-    position: "Lead Developer",
+    name: "Raushan Kumar",
+    position: "Back-end developer",
     description: "Passionate about coding and software design.",
     image: "https://via.placeholder.com/150",
     facebook: "https://www.facebook.com",
     twitter: "https://www.twitter.com",
     linkedin: "https://www.linkedin.com",
     instagram: "https://www.instagram.com",
-  },
-  {
-    name: "Charlie Brown",
-    position: "UI/UX Designer",
-    description: "Focused on creating user-friendly interfaces.",
-    image: "https://via.placeholder.com/150",
-    facebook: "https://www.facebook.com",
-    twitter: "https://www.twitter.com",
-    linkedin: "https://www.linkedin.com",
-    instagram: "https://www.instagram.com",
-  },
+  }
 ];
 
 const cardVariants = {
@@ -42,15 +32,15 @@ const cardVariants = {
 
 const OurTeam = () => {
   return (
-    <div className="max-w-6xl mx-auto p-8">
-      <h2 className="text-4xl font-bold text-center dark:text-[#0F3BFE] text-gray-800  mb-8">
+    <div className="max-w-6xl mx-auto p-8 bg-transparent">
+      <h2 className="text-4xl font-bold text-center dark:text-[#0F3BFE] text-gray-800 mb-8">
         Meet Our Team
       </h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6  ">
+      <div className="flex justify-center gap-6 flex-wrap">
         {teamMembers.map((member, index) => (
           <motion.div
             key={index}
-            className="dark:bg-[#363636] backdrop-blur-sm backdrop-filter rounded-3xl shadow-lg p-6 text-center transition-transform transform hover:shadow-2xl"
+            className="dark:bg-transparent bg-transparent backdrop-blur-sm backdrop-filter border border-gray-300 dark:border-gray-600 rounded-3xl shadow-lg p-6 text-center transition-transform transform hover:shadow-2xl w-80"
             initial="hidden"
             animate="visible"
             variants={cardVariants}
@@ -68,40 +58,20 @@ const OurTeam = () => {
             <p className="text-gray-300 dark:text-gray-300 mb-2">
               {member.position}
             </p>
-            <p className="text-gray-400 dark:text-gray-400 mb-4">
+            <p className="text-blue-700 dark:text-gray-400 mb-4">
               {member.description}
             </p>
             <div className="flex justify-center space-x-3">
-              <a
-                href={member.facebook}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 hover:text-blue-800 transition"
-              >
+              <a href={member.facebook} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 transition">
                 <FaFacebook size={20} />
               </a>
-              <a
-                href={member.twitter}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-400 hover:text-blue-600 transition"
-              >
+              <a href={member.twitter} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-600 transition">
                 <FaTwitter size={20} />
               </a>
-              <a
-                href={member.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-700 hover:text-blue-900 transition"
-              >
+              <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:text-blue-900 transition">
                 <FaLinkedin size={20} />
               </a>
-              <a
-                href={member.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-pink-600 hover:text-pink-800 transition"
-              >
+              <a href={member.instagram} target="_blank" rel="noopener noreferrer" className="text-pink-600 hover:text-pink-800 transition">
                 <FaInstagram size={20} />
               </a>
             </div>

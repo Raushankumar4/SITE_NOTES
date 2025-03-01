@@ -6,6 +6,7 @@ import { useGetSessionalPaper } from "../../hooks/useGetSessionalPaper";
 import { useSelector } from "react-redux";
 import { useDeleteSessional } from "../../hooks/useDeleteSessional";
 import { SERVER } from "../../constant";
+import { useGetProfile } from "../../hooks/useGetProfile";
 
 const SessionalCard = () => {
   const allBranches = [
@@ -26,7 +27,8 @@ const SessionalCard = () => {
 
   const { id } = useParams();
   useGetSessionalPaper(id);
-  const { sessionalPapers } = useSelector((state) => state.user);
+  const { sessionalPapers, user } = useSelector((state) => state.user);
+  useGetProfile();
 
   const { deleteSessional } = useDeleteSessional();
   const navigate = useNavigate();
@@ -132,13 +134,15 @@ const SessionalCard = () => {
                   <FaDownload className="mr-1" />
                   Download PDF
                 </button>
-                <button
-                  onClick={() => handleDelete(paper?._id)}
-                  className="flex items-center text-red-500 hover:text-red-700 text-xs font-semibold"
-                >
-                  <FaTrash className="mr-1" />
-                  Delete
-                </button>
+                {user?._id === paper?.userId && (
+                  <button
+                    onClick={() => handleDelete(paper?._id)}
+                    className="flex no-underline items-center text-red-500 hover:text-red-700 text-xs font-semibold"
+                  >
+                    <FaTrash className="mr-1" />
+                    Delete
+                  </button>
+                )}
               </div>
             </li>
           ))}

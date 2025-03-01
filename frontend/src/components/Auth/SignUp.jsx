@@ -40,8 +40,8 @@ const SignUp = () => {
   ];
 
   return (
-    <div className="flex items-center justify-center min-h-screen w-screen bg-gradient-to-r from-blue-500 to-indigo-600 p-4">
-      <div className="bg-white/20 backdrop-blur-lg shadow-2xl rounded-2xl overflow-hidden flex flex-col md:flex-row w-full max-w-4xl">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-500 to-indigo-600 p-6">
+      <div className="bg-white/20 backdrop-blur-lg shadow-2xl rounded-2xl overflow-hidden flex flex-col md:flex-row w-full max-w-5xl">
         {/* Left Side - Form */}
         <div className="w-full md:w-1/2 p-6 md:p-8">
           <h2 className="text-2xl md:text-3xl font-extrabold text-white text-center mb-4 md:mb-6">
@@ -127,7 +127,7 @@ const SignUp = () => {
             {/* Submit Button */}
             <button
               type="submit"
-              className="w-full bg-gradient-to-r from-blue-500 to-indigo-500 text-white font-bold py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+              className="w-full create text-white font-bold py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
             >
               {loading ? "Signing Up..." : "Sign Up"}
             </button>
@@ -137,10 +137,7 @@ const SignUp = () => {
           <div className="mt-4 md:mt-6 text-center">
             <p className="text-white text-sm md:text-base">
               Already have an account?{" "}
-              <button
-                onClick={() => navigate(-1)}
-                className="text-blue-300 font-semibold hover:underline"
-              >
+              <button onClick={() => navigate(-1)} className="text-blue-300 font-semibold hover:underline">
                 Log in
               </button>
             </p>
@@ -155,7 +152,7 @@ const SignUp = () => {
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-            <h2 className="text-white text-lg md:text-2xl font-semibold text-center px-6">
+            <h2 className="text-white text-3xl font-semibold text-center p-6">
               Welcome to Our Community!
             </h2>
           </div>

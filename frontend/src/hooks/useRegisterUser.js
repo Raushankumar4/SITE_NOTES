@@ -61,7 +61,7 @@ export const useRegisterUser = () => {
       const { data } = await axios.post(`${AUTH}/register`, userInput);
       console.log(data?.message);
       toast.success(data?.message);
-      navigate("/signIn");
+      navigate("/verify-email");
     } catch (error) {
       console.log(error);
       toast.error(error?.response?.data?.message || error?.message);

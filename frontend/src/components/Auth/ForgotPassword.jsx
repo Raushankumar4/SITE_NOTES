@@ -6,22 +6,21 @@ const ForgotPassword = () => {
   const { userInput, error, loading, handleOnChange, handleOnForgot } =
     useForgotPassword();
   return (
-    <div className="relative">
-      <div className="mt-12 w-2/3 mx-auto bg-[#ffff] shadow-lg rounded-lg">
-        <div className="w-56 h-48 mx-auto my-10  ">
-          <img src="forgot.png" alt="logo" />
+    <div className="flex items-center justify-center min-h-screen w-screen p-6 body">
+      <div className="glass-card w-full max-w-md p-8 rounded-2xl shadow-xl backdrop-blur-md">
+        <div className="flex justify-center mb-6">
+          <img src="forgot.png" alt="logo" className="w-24 h-24 object-contain" />
         </div>
-        <div>
-          <h5 className="text-center mb-6">Forgot your Password?</h5>
-          <p className="text-center mb-6 text-gray-400">
-            Enter your email address and we'll send you a link to reset your
-            password.
+        <div className="text-center">
+          <h5 className="text-white text-2xl font-bold mb-2">Forgot Password?</h5>
+          <p className="text-100 text-sm mb-6">
+            No worries! Enter your email below and we'll send you a reset link.
           </p>
         </div>
-        <div className="p-4 ">
-          <form onSubmit={handleOnForgot}>
+        <div>
+          <form onSubmit={handleOnForgot} className="space-y-5">
             <InputArea
-              label="Email"
+              label="Email Address"
               name="email"
               type="email"
               placeholder="Enter your email"
@@ -30,16 +29,14 @@ const ForgotPassword = () => {
               value={userInput.email}
               error={error.email}
               disabled={loading}
-           
             />
-            <div className="grid place-items-center">
-            
+            <div className="flex justify-center">
               <button
                 type="submit"
-                className="w-1/4 text-center hover:transition-all hover:duration-500 hover:scale-105 hover:ease-in-out bg-[#FFC727]  text-white hover:bg-gray-600 py-2 rounded-lg mt-4 "
+                className="w-full max-w-sm bg-gradient-to-r from-blue-400 to-blue-900 hover:from-blue-500 hover:to-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 disabled:opacity-50"
                 disabled={loading}
               >
-                {loading ? "Loading..." : "Submit"}
+                {loading ? "Processing..." : "Send Reset Link"}
               </button>
             </div>
           </form>

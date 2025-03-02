@@ -11,31 +11,29 @@ import {
   Sun,
   Moon,
 } from "lucide-react";
+import UserLogs from "../Auth/UserLogs";
 
 const Dashboard = () => {
   const [tab, setTab] = useState("users");
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [darkMode, setDarkMode] = useState(false);
+  const [view, setView] = useState("")
 
   return (
     <div
-      className={`flex min-h-screen font-sans transition-colors duration-300 ${
-        darkMode ? "bg-gray-900 text-white" : "bg-gray-100 text-gray-900"
-      }`}
+      className={`flex min-h-screen font-sans transition-colors duration-300 ${darkMode ? "bg-gray-900 text-white" : "bg-gray-100 text-gray-900"
+        }`}
     >
       {/* Sidebar */}
       <div
-        className={`fixed inset-y-0 left-0 ${
-          darkMode ? "bg-gray-800" : "bg-white"
-        } shadow-xl p-6 w-72 transition-transform duration-300 ${
-          isSidebarOpen ? "translate-x-0" : "-translate-x-72"
-        } sm:translate-x-0 rounded-r-xl`}
+        className={`fixed inset-y-0 left-0 ${darkMode ? "bg-gray-800" : "bg-white"
+          } shadow-xl p-6 w-72 transition-transform duration-300 ${isSidebarOpen ? "translate-x-0" : "-translate-x-72"
+          } sm:translate-x-0 rounded-r-xl`}
       >
         <div className="flex items-center justify-between">
           <h2
-            className={`text-2xl font-bold ${
-              darkMode ? "text-indigo-300" : "text-indigo-600"
-            }`}
+            className={`text-2xl font-bold ${darkMode ? "text-indigo-300" : "text-indigo-600"
+              }`}
           >
             Dashboard
           </h2>
@@ -58,13 +56,12 @@ const Dashboard = () => {
             <button
               key={item.name}
               onClick={() => setTab(item.name.toLowerCase())}
-              className={`flex items-center gap-3 w-full px-4 py-3 rounded-lg text-lg transition ${
-                tab === item.name.toLowerCase()
-                  ? "bg-indigo-600 text-white shadow-lg"
-                  : darkMode
+              className={`flex items-center gap-3 w-full px-4 py-3 rounded-lg text-lg transition ${tab === item.name.toLowerCase()
+                ? "bg-indigo-600 text-white shadow-lg"
+                : darkMode
                   ? "hover:bg-gray-700"
                   : "hover:bg-gray-200"
-              }`}
+                }`}
             >
               {item.icon} {item.name}
             </button>
@@ -76,10 +73,10 @@ const Dashboard = () => {
       <div className="flex-1 p-8 sm:ml-72">
         {/* Navbar */}
         <div
-          className={`flex items-center justify-between ${
-            darkMode ? "bg-gray-800" : "bg-white"
-          } p-4 shadow-lg rounded-xl`}
+          className={`flex items-center justify-between ${darkMode ? "bg-gray-800" : "bg-white"
+            } p-4 shadow-lg rounded-xl`}
         >
+          <UserLogs />
           <button
             className="sm:hidden text-gray-600"
             onClick={() => setIsSidebarOpen(true)}
@@ -121,9 +118,8 @@ const Dashboard = () => {
           ].map((item, index) => (
             <div
               key={index}
-              className={`shadow-xl rounded-2xl p-8 flex flex-col items-center text-center transform hover:scale-105 transition duration-300 ${
-                darkMode ? "bg-gray-800 text-white" : "bg-white text-gray-900"
-              }`}
+              className={`shadow-xl rounded-2xl p-8 flex flex-col items-center text-center transform hover:scale-105 transition duration-300 ${darkMode ? "bg-gray-800 text-white" : "bg-white text-gray-900"
+                }`}
             >
               {item.icon}
               <h3 className="text-lg font-semibold mt-2">{item.label}</h3>

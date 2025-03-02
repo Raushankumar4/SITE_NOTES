@@ -10,23 +10,23 @@ export const useGetAllSemesterPapers = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!token) return;
-
     const getAllSemesterPapers = async () => {
       try {
         const { data } = await axios.get(`${NOTES}/getALlPapers`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+          headers: token ? { Authorization: `Bearer ${token}` } : {},
           withCredentials: true,
         });
 
-        dispatch(setSemesterPaper(data?.allNotes));
+        console.log("Papers:", data);
+        dispatch(setSemesterPaper(data?.notes));
       } catch (error) {
-        console.error("Error fetching semester papers:", error);
+        console.error(
+          "Error fetching semester papers:",
+          error.response?.data || error.message
+        );
       }
     };
 
-    getAllSemesterPapers();
+    if (token) getAllSemesterPapers();
   }, [token, refresh, dispatch]);
 };

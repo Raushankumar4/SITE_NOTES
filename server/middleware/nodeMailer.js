@@ -1,5 +1,10 @@
 import { createTransport } from "nodemailer";
-import { generateForgotPasswordHtml, generateOtpHtml } from "../constant.js";
+import {
+  generateForgotPasswordHtml,
+  generateOtpHtml,
+  Verification_Email_Template,
+  Welcome_Email_Template,
+} from "../constant.js";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -35,17 +40,17 @@ export const sendMail = async (email, subject, data) => {
 // Send Email Verification Code
 export const sendVerificationCode = async (email, verificationCode) => {
   try {
-    const html = `<p>Your verification code is: <strong>${verificationCode}</strong></p>`;
-
     const response = await transporter.sendMail({
       from: `"SITE NOTES" <${process.env.EMAIL}>`,
       to: email,
       subject: "Verify Email",
       text: "Verify your Email",
-      html,
+      html: Verification_Email_Template.replace(
+        "{verificationCode}",
+        verificationCode
+      ),
     });
-
-    console.log(`Verification email sent: ${JSON.stringify(response)}`);
+    return response;
   } catch (error) {
     console.error("Error sending verification email:", error);
   }
@@ -54,15 +59,14 @@ export const sendVerificationCode = async (email, verificationCode) => {
 // Email Verified Message
 export const emailVerifiedMessage = async (email, name) => {
   try {
-    const html = `<p>Welcome: <strong>${email} & ${name}</strong></p>`;
     const response = await transporter.sendMail({
       from: `"SITE NOTES" <${process.env.EMAIL}>`,
       to: email,
       subject: `Welcome ${name}`,
       text: `Email Verified ${email}`,
-      html,
+      html: Welcome_Email_Template.replace("{name}", name),
     });
-    console.log(response);
+    return response;
   } catch (error) {
     console.error("Error sending verification email:", error);
   }

@@ -270,10 +270,14 @@ export const getAllNotes = ErrorHandler(async (req, res) => {
   }
 
   let notes;
-  if (user.role === "teacher" || user.role === "admin") {
-    notes = await Note.find().populate("sessionalPaper");
+  if (user.role === "teacher") {
+    notes = await Note.find()
+      .populate("sessionalPaper")
+      .populate({ path: "userId", select: "fullName role" }); // Selecting only fullName & role
   } else {
-    notes = await Note.find({ status: "approved" }).populate("sessionalPaper");
+    notes = await Note.find({ status: "approved" })
+      .populate("sessionalPaper")
+      .populate({ path: "userId", select: "fullName role" });
   }
 
   return res.status(200).json({ notes });

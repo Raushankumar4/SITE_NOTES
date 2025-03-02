@@ -25,8 +25,8 @@ const Navbar = () => {
         ) || [];
 
       const filteredSessionalPapers =
-        sessionalPapers?.filter((paper) =>
-          paper?.title?.toLowerCase().includes(searchQuery.toLowerCase())
+        semesterPapers?.filter((paper) =>
+          paper?.description?.toLowerCase().includes(searchQuery.toLowerCase())
         ) || [];
 
       setFilteredPapers([
@@ -87,7 +87,7 @@ const Navbar = () => {
           type="text"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          placeholder="Search..."
+          placeholder="Search by paper name or semester name.."
           className="md:w-1/2 p-3 dark:text-[#FFFFFF] dark:bg-[#3d3c3c] outline-none focus:ring-1 focus:ring-gray-700 rounded-full placeholder-gray-400"
         />
 
@@ -100,10 +100,10 @@ const Navbar = () => {
                   className="w-1/3 p-3 dark:text-[#FFFFFF] outline-none focus:ring-1 focus:ring-gray-700 placeholder-gray-400"
                 >
                   <Link
-                    className="no-underline dark:text-[#eeeef2]"
-                    to={`/semesterPaper/sessionalPapers/${paper?._id}`}
+                    className="no-underline text-black dark:text-[#eeeef2]"
+                    to={`/semesterPaper/view/${paper?._id}`}
                   >
-                    {paper?.title}
+                    {paper?.title || paper?.description}
                   </Link>
                 </div>
               ))}

@@ -18,93 +18,119 @@ import { UserActivity } from "../models/userActivity.js";
 dotenv.config();
 
 export const register = ErrorHandler(async (req, res) => {
-  const { fullName, email, password, role, selectBranch, phoneNumber } =
-    req.body;
+  const {
+    fullName,
+    email,
+    password,
+    role,
+    selectBranch,
+    selectYear,
+    phoneNumber,
+  } = req.body;
 
-  // Validate password length
   if (password.length < 6) {
     return res
       .status(400)
       .json({ message: "Password must be at least 6 characters long" });
   }
 
-  // Validate phone number length
-  if (phoneNumber.length < 10) {
+  if (phoneNumber.length !== 10) {
     return res
       .status(400)
-      .json({ message: "Phone number must be at least 10 characters long" });
+      .json({ message: "Phone number must be exactly 10 digits long" });
   }
 
-  // Check if the user already exists
   const existingUser = await User.findOne({ email });
   if (existingUser) {
-    return res.status(400).json({ message: "Email already exists" });
+    return res
+      .status(400)
+      .json({ message: "Email already exists. Please log in." });
   }
 
-  // Hash password
   const hashedPassword = await bcrypt.hash(password, 10);
 
-  // Generate a 6-digit OTP
   const verificationCode = Math.floor(
     100000 + Math.random() * 900000
   ).toString();
-  const otpExpiresAt = Date.now() + 5 * 60 * 1000; // OTP expires in 5 minutes
+  const otpExpiresAt = new Date(Date.now() + 5 * 60 * 1000); // 5 minutes
 
-  // Handle file upload if exists
-  let localFilePath = req.file ? req.file.path : null;
+  await sendVerificationCode(email, verificationCode);
 
-  // Create new user
+  req.session.tempUser = {
+    fullName,
+    email,
+    hashedPassword,
+    role,
+    selectBranch,
+    selectYear,
+    phoneNumber,
+    verificationCode,
+    otpExpiresAt,
+  };
+
+  // ✅ Explicitly save session
+  req.session.save((err) => {
+    if (err) {
+      console.error("Session save error:", err);
+      return res.status(500).json({ message: "Session error. Try again." });
+    }
+    return res
+      .status(200)
+      .json({ message: "OTP sent. Please verify your email." });
+  });
+});
+
+export const verifyOtp = ErrorHandler(async (req, res) => {
+  const { otp } = req.body;
+
+  console.log("Session Data:", req.session); // Debugging
+
+  if (!req.session.tempUser) {
+    return res
+      .status(400)
+      .json({ message: "No OTP request found. Please register again." });
+  }
+
+  const {
+    fullName,
+    email,
+    hashedPassword,
+    role,
+    selectBranch,
+    selectYear,
+    phoneNumber,
+    profile,
+    verificationCode,
+    otpExpiresAt,
+  } = req.session.tempUser;
+
+  if (Date.now() > new Date(otpExpiresAt).getTime()) {
+    return res
+      .status(400)
+      .json({ message: "OTP has expired. Please request a new one." });
+  }
+
+  if (otp !== verificationCode) {
+    return res.status(400).json({ message: "Invalid OTP. Please try again." });
+  }
+
   const newUser = await User.create({
     fullName,
     email,
     password: hashedPassword,
     role,
     selectBranch,
+    selectYear,
     phoneNumber,
-    profile: localFilePath,
-    verificationCode,
-    otpExpiresAt,
+    profile,
+    isVerified: true,
   });
 
-  // Send OTP email
-  await sendVerificationCode(newUser.email, verificationCode);
+  req.session.tempUser = null; // Clear session after verification
 
-  return res
-    .status(201)
-    .json({ message: "User registered. Please verify your email." });
-});
+  emailVerifiedMessage(newUser.email, newUser.fullName);
 
-// ✅ Verify OTP
-export const verifyOtp = ErrorHandler(async (req, res) => {
-  const { otp } = req.body;
-
-  // Find user by email
-  const user = await User.findOne({ verificationCode: otp });
-
-  if (!user) {
-    return res.status(404).json({ message: "User not found" });
-  }
-
-  // Check if OTP has expired
-  if (Date.now() > user.otpExpiresAt) {
-    return res
-      .status(400)
-      .json({ message: "OTP has expired. Please request a new one." });
-  }
-
-  // Check if OTP is correct
-  if (user.verificationCode !== otp) {
-    return res.status(400).json({ message: "Invalid OTP. Please try again." });
-  }
-
-  // Mark user as verified
-  user.isVerified = true;
-  user.verificationCode = null;
-  user.otpExpiresAt = null;
-  await user.save();
-  emailVerifiedMessage(user.email, user.name);
-
-  return res.status(200).json({ message: "Email verified successfully!" });
+  return res.status(201).json({ message: "Email verified successfully!" });
 });
 
 // login user

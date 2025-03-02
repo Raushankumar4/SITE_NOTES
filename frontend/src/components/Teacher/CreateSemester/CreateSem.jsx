@@ -5,7 +5,7 @@ import { InputArea } from "../../InputField/InputArea";
 import SelectOption from "../../InputField/SelectOption";
 import Loading from "../../Loading/Loading";
 import LoadingSpinner from "../../Loading/LoadingSpinner";
-import { FaFilePdf, FaRegFileAlt, FaPen, FaBookOpen } from "react-icons/fa"; 
+import { FaFilePdf, FaRegFileAlt, FaPen, FaBookOpen } from "react-icons/fa";
 
 const CreateSem = () => {
   const options = [
@@ -22,10 +22,10 @@ const CreateSem = () => {
   ];
 
   const yearOptions = [
-    { value: "I", label: "I" },
-    { value: "II", label: "II" },
-    { value: "III", label: "III" },
-    { value: "IV", label: "IV" },
+    { value: "1st", label: "1st" },
+    { value: "2nd", label: "2nd" },
+    { value: "3rd", label: "3rd" },
+    { value: "4th", label: "4th" },
   ];
 
   const [showModal, setShowModal] = useState(false);
